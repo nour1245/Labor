@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:laboar/view/screens/auth_screens/login.dart';
+import 'package:laboar/view/screens/auth_screens/register.dart';
 import 'package:laboar/view/screens/welcome_pages/language_screen.dart';
 import 'package:laboar/view/screens/welcome_pages/onboard.dart';
 
@@ -36,7 +37,7 @@ class MyApp extends StatelessWidget {
       supportedLocales: S.delegate.supportedLocales,
       debugShowCheckedModeBanner: false,
       title: 'Labor',
-      home: LoginScreen(),
+      home: RegisterScreen(),
     );
   }
 }

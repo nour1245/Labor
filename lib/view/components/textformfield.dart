@@ -29,7 +29,7 @@ class DefaultTextForm extends StatelessWidget {
           style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
         ),
         SizedBox(
-          height: media.height * .02,
+          height: media.height * .01,
         ),
         TextFormField(
           keyboardType: keyboardType,
