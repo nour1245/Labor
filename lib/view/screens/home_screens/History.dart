@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:laboar/view/components/activebutton.dart';
+import 'package:laboar/view/components/history_card.dart';
 import 'package:laboar/view/components/notactivebutton.dart';
+import 'package:laboar/view/styles/colors.dart';
 
 class HistoryScreen extends StatefulWidget {
   HistoryScreen({super.key});
@@ -35,29 +37,39 @@ class _HistoryScreenState extends State<HistoryScreen> {
                   children: [
                     //ongoing part
                     InkWell(
-                        onTap: () {
-                          setState(() {
-                            isOnePressed = true;
-                          });
-                        },
-                        child: isOnePressed
-                            ? ActiveMenuButton(text: 'Ongoing', media: media)
-                            : NotActiveMenuButton(
-                                text: 'Ongoing', media: media)),
+                      onTap: () {
+                        setState(() {
+                          isOnePressed = true;
+                        });
+                      },
+                      child: isOnePressed
+                          ? ActiveMenuButton(text: 'Ongoing', media: media)
+                          : NotActiveMenuButton(text: 'Ongoing', media: media),
+                    ),
                     const Spacer(),
                     //past part
                     InkWell(
-                        onTap: () {
-                          setState(() {
-                            isOnePressed = false;
-                          });
-                        },
-                        child: isOnePressed
-                            ? NotActiveMenuButton(text: "Past", media: media)
-                            : ActiveMenuButton(text: "Past", media: media)),
+                      onTap: () {
+                        setState(() {
+                          isOnePressed = false;
+                        });
+                      },
+                      child: isOnePressed
+                          ? NotActiveMenuButton(text: "Past", media: media)
+                          : ActiveMenuButton(text: "Past", media: media),
+                    ),
                   ],
                 ),
               ),
+              isOnePressed
+                  ? HistroyCard(
+                      media: media,
+                      jobName: "contract cleaning",
+                      jobId: '25ds458126fs5dha')
+                  : HistroyCard(
+                      media: media,
+                      jobName: "contract ",
+                      jobId: '25ds458126fs5dha'),
             ],
           ),
         ),
