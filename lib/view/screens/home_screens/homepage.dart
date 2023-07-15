@@ -1,9 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:laboar/view/screens/home_screens/Catigories.dart';
 import 'package:laboar/view/styles/colors.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+  HomeScreen({super.key});
+
+  final List grids = [
+    {"image": "assets/images/hourly.png", "title": "Hourly Cleaning"},
+    {"image": "assets/images/car wash.png", "title": "Car Wash"},
+    {"image": "assets/images/plumbing.png", "title": "plumbing"},
+    {"image": "assets/images/electrical.png", "title": "Electrical"}
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -55,39 +63,37 @@ class HomeScreen extends StatelessWidget {
               ),
               padding: EdgeInsetsDirectional.all(media.height * 0.01),
               width: media.width * 0.90,
-              child: Expanded(
-                child: Row(
-                  children: [
-                    Container(
-                      height: media.height * 0.06,
-                      child: const Image(
-                        image: AssetImage('assets/images/logo.png'),
-                      ),
+              child: Row(
+                children: [
+                  Container(
+                    height: media.height * 0.06,
+                    child: const Image(
+                      image: AssetImage('assets/images/logo.png'),
                     ),
-                    SizedBox(
-                      width: media.width * 0.01,
+                  ),
+                  SizedBox(
+                    width: media.width * 0.01,
+                  ),
+                  const Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'your location',
+                          textAlign: TextAlign.start,
+                          style: TextStyle(color: lightGrayColor),
+                        ),
+                        Text(
+                          'Jiddah Alexander Language School , ALS',
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          textAlign: TextAlign.start,
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      ],
                     ),
-                    const Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'your location',
-                            textAlign: TextAlign.start,
-                            style: TextStyle(color: lightGrayColor),
-                          ),
-                          Text(
-                            'Jiddah Alexander Language School , ALS',
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                            textAlign: TextAlign.start,
-                            style: TextStyle(color: Colors.white),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
 
@@ -98,7 +104,7 @@ class HomeScreen extends StatelessWidget {
               child: PageView.builder(
                 itemCount: 3,
                 controller: adsController,
-                itemBuilder: (context, index) => addItem(media),
+                itemBuilder: (context, index) => adItem(media),
               ),
             ),
             Center(
@@ -124,7 +130,11 @@ class HomeScreen extends StatelessWidget {
                 ),
                 const Spacer(),
                 TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => CatigoriesScreen(),
+                    ));
+                  },
                   child: const Text(
                     "See All",
                     style: TextStyle(
@@ -137,12 +147,13 @@ class HomeScreen extends StatelessWidget {
             ),
             Expanded(
               child: GridView.builder(
+                physics: const BouncingScrollPhysics(),
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
                 ),
-                itemCount: 4,
+                itemCount: grids.length,
                 itemBuilder: (BuildContext context, int index) {
-                  return gridViewItem();
+                  return gridViewItem(media, index);
                 },
               ),
             ),
@@ -152,7 +163,7 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  addItem(media) {
+  adItem(media) {
     return Container(
       padding: EdgeInsetsDirectional.all(media.height * 0.01),
       width: media.width * 0.90,
@@ -166,16 +177,21 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  gridViewItem() {
+  gridViewItem(media, index) {
     return Card(
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Image(
-            image: AssetImage('assets/images/hourly.png'),
+            image: AssetImage(grids[index]['image']),
           ),
-          Text(
-            'hourly Cleaning',
-            style: TextStyle(fontSize: 18, fontWeight: FontWeight.w800),
+          Padding(
+            padding: EdgeInsets.all(media.height * 0.01),
+            child: Text(
+              grids[index]['title'],
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.w800),
+            ),
           ),
         ],
       ),

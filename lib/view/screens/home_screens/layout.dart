@@ -20,19 +20,19 @@ class _LayoutScreenState extends State<LayoutScreen> {
     List pages = [
       {
         "title": "Home",
-        "page": const HomeScreen(),
+        "page": HomeScreen(),
       },
       {
         "title": "History",
-        "page": const HistoryScreen(),
+        "page": HistoryScreen(),
       },
       {
         "title": "Catigories",
-        "page": const CatigoriesScreen(),
+        "page": CatigoriesScreen(),
       },
       {
         "title": "Profile",
-        "page": const ProfileScreen(),
+        "page": ProfileScreen(),
       },
     ];
 

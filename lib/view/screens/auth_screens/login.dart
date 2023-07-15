@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:laboar/view/components/button.dart';
+import 'package:laboar/view/components/text_button.dart';
 import 'package:laboar/view/components/textformfield.dart';
 import 'package:laboar/view/screens/auth_screens/forget_pass.dart';
 import 'package:laboar/view/screens/auth_screens/register.dart';

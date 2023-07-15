@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:laboar/view/components/button.dart';
+import 'package:laboar/view/components/text_button.dart';
 import 'package:laboar/view/screens/auth_screens/reset_pass.dart';
 import 'package:laboar/view/styles/colors.dart';
 import 'package:pinput/pinput.dart';
