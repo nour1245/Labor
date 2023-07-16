@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:laboar/view/components/activebutton.dart';
-import 'package:laboar/view/components/history_card.dart';
-import 'package:laboar/view/components/notactivebutton.dart';
+import 'package:laboar/view/widgets/activebutton.dart';
+import 'package:laboar/view/widgets/history_card.dart';
+import 'package:laboar/view/widgets/notactivebutton.dart';
 import 'package:laboar/view/styles/colors.dart';
 
 class HistoryScreen extends StatefulWidget {

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:laboar/view/components/text_button.dart';
-import 'package:laboar/view/components/textformfield.dart';
+import 'package:laboar/blocs/authcubit/auth_cubit.dart';
+import 'package:laboar/view/widgets/text_button.dart';
+import 'package:laboar/view/widgets/textformfield.dart';
 import 'package:laboar/view/screens/auth_screens/forget_pass.dart';
 import 'package:laboar/view/screens/auth_screens/register.dart';
 import 'package:laboar/view/styles/colors.dart';
@@ -119,7 +120,9 @@ class LoginScreen extends StatelessWidget {
                 height: media.height * 0.03,
               ),
               InkWell(
-                onTap: () {},
+                onTap: () async {
+                  await AuthCubit.get(context).signInWithFacebook();
+                },
                 child: Container(
                   decoration: BoxDecoration(
                     color: greenColor.withOpacity(0.05),
@@ -143,7 +146,9 @@ class LoginScreen extends StatelessWidget {
                 height: media.height * 0.03,
               ),
               InkWell(
-                onTap: () {},
+                onTap: () async {
+                  await AuthCubit.get(context).signInWithGoogle();
+                },
                 child: Container(
                   decoration: BoxDecoration(
                     color: greenColor.withOpacity(0.05),

@@ -1,7 +1,10 @@
+import 'package:bloc/bloc.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:laboar/firebase_options.dart';
 import 'package:laboar/view/screens/auth_screens/login.dart';
 import 'package:laboar/view/screens/auth_screens/otp.dart';
 import 'package:laboar/view/screens/auth_screens/register.dart';
@@ -9,10 +12,16 @@ import 'package:laboar/view/screens/home_screens/layout.dart';
 import 'package:laboar/view/screens/welcome_pages/language_screen.dart';
 import 'package:laboar/view/screens/welcome_pages/onboard.dart';
 
+import 'blocs/bloc_observer.dart';
 import 'generated/l10n.dart';
 import 'view/screens/home_screens/homepage.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  Bloc.observer = MyBlocObserver();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   SystemChrome.setSystemUIOverlayStyle(
     const SystemUiOverlayStyle(
       statusBarColor: Colors.transparent,
@@ -40,7 +49,7 @@ class MyApp extends StatelessWidget {
       supportedLocales: S.delegate.supportedLocales,
       debugShowCheckedModeBanner: false,
       title: 'Labor',
-      home: LayoutScreen(),
+      home: LoginScreen(),
     );
   }
 }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:laboar/view/components/text_button.dart';
+import 'package:laboar/view/widgets/text_button.dart';
 import 'package:laboar/view/screens/auth_screens/login.dart';
 import 'package:laboar/view/screens/welcome_pages/language_screen.dart';
 import 'package:laboar/view/styles/colors.dart';

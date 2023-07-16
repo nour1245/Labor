@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:laboar/view/components/card.dart';
-import 'package:laboar/view/components/text_button.dart';
+import 'package:laboar/view/widgets/card.dart';
+import 'package:laboar/view/widgets/text_button.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});

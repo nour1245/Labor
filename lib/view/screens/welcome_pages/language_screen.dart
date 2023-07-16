@@ -4,7 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:laboar/view/styles/colors.dart';
 
 import '../../../generated/l10n.dart';
-import '../../components/text_button.dart';
+import '../../widgets/text_button.dart';
 
 class LanguageScreen extends StatelessWidget {
   const LanguageScreen({super.key});
