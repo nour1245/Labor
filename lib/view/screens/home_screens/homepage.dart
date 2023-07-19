@@ -49,7 +49,7 @@ class HomeScreen extends StatelessWidget {
                     ),
                     Text(
                       '${currentuser['name']}',
-                      style: TextStyle(
+                      style: const TextStyle(
                           color: yallowColor,
                           fontSize: 14,
                           fontWeight: FontWeight.w500),

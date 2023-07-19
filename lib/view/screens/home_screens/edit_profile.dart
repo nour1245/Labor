@@ -3,6 +3,9 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:laboar/blocs/authcubit/auth_cubit.dart';
 import 'package:laboar/blocs/authcubit/auth_state.dart';
+import 'package:laboar/view/screens/auth_screens/login.dart';
+import 'package:laboar/view/styles/colors.dart';
+import 'package:laboar/view/widgets/text_button.dart';
 import 'package:laboar/view/widgets/textformfield.dart';
 
 import '../../../blocs/constants/constants.dart';
@@ -61,7 +64,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                             fit: BoxFit.contain,
                             image: NetworkImage('${currentuser['photo']}'),
                           ),
-                          Icon(
+                          const Icon(
                             Icons.camera_alt_outlined,
                             color: Colors.black,
                           ),
@@ -83,7 +86,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                         keyboardType: TextInputType.name,
                         hinttext: NameController.text,
                         obscure: false,
-                        suffix: Icon(Icons.person_outline_sharp),
+                        suffix: const Icon(Icons.person_outline_sharp),
                       ),
                       DefaultTextForm(
                         Controller: phoneController,
@@ -91,7 +94,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                         keyboardType: TextInputType.name,
                         hinttext: phoneController.text,
                         obscure: false,
-                        suffix: Icon(Icons.phone),
+                        suffix: const Icon(Icons.phone),
                       ),
                       DefaultTextForm(
                         Controller: passwordController,
@@ -99,8 +102,52 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                         keyboardType: TextInputType.name,
                         hinttext: passwordController.text,
                         obscure: true,
-                        suffix: Icon(Icons.remove_red_eye_outlined),
+                        suffix: const Icon(Icons.remove_red_eye_outlined),
                       ),
+                      SizedBox(
+                        height: media.height * 0.04,
+                      ),
+                      DefaultButton(
+                          height: media.height * 0.08,
+                          width: media.width * 0.90,
+                          text: const Text(
+                            'Save Changes',
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.w700,
+                                fontSize: 18),
+                          ),
+                          funq: () {}),
+                      SizedBox(
+                        height: media.height * 0.09,
+                      ),
+                      TextButton.icon(
+                          style: ButtonStyle(
+                              backgroundColor: MaterialStatePropertyAll(
+                                Colors.red.withOpacity(0.2),
+                              ),
+                              iconColor: MaterialStatePropertyAll(Colors.red)),
+                          onPressed: () {
+                            firebaseFirestore
+                                .collection("users")
+                                .doc('user${currentuser['phone']}')
+                                .delete()
+                                .then((value) {
+                              Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => LoginScreen(),
+                                  ));
+                            });
+                          },
+                          icon: const Icon(Icons.delete_outline),
+                          label: const Text(
+                            'Delete account',
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontWeight: FontWeight.w500,
+                                fontSize: 16),
+                          )),
                     ],
                   ),
                 ),

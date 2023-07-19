@@ -63,7 +63,7 @@ class AuthCubit extends Cubit<AuthStates> {
   }
 
 //create user in firestore database
-  createUser(name, password, phone) {
+  createUser(name, password, phone) async {
     UserModel usermodel = UserModel(
       name: name,
       password: password,
@@ -71,7 +71,7 @@ class AuthCubit extends Cubit<AuthStates> {
       photo:
           "https://www.pngkey.com/png/detail/57-576740_black-person-png-businessperson.png",
     );
-    firebaseFirestore
+    await firebaseFirestore
         .collection('users')
         .doc("user${usermodel.phone}")
         .set(usermodel.toMap())

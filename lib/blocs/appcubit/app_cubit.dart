@@ -7,16 +7,4 @@ class AppCubit extends Cubit<AppStates> {
   AppCubit() : super(AppInitial());
 
   static AppCubit get(context) => BlocProvider.of(context);
-
-  UserModel? usermodel;
-
-  getData(phone) async {
-    await firebaseFirestore
-        .collection('users')
-        .doc("user$phone")
-        .get()
-        .then((value) {
-      usermodel = UserModel.fromJson(value.data()!);
-    });
-  }
 }
