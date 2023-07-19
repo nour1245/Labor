@@ -31,3 +31,11 @@ class SignOut extends AuthStates {}
 class CreateUserSuccessState extends AuthStates {}
 
 class CreateUserErrorState extends AuthStates {}
+
+class LoginLoadingState extends AuthStates {}
+
+class LoginSuccessState extends AuthStates {}
+
+class LoginErrorState extends AuthStates {
+  LoginErrorState(String s);
+}

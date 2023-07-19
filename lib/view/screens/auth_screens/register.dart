@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:laboar/blocs/authcubit/auth_cubit.dart';
 import 'package:laboar/blocs/authcubit/auth_state.dart';
-import 'package:laboar/view/screens/auth_screens/otp.dart';
 import 'package:laboar/view/widgets/text_button.dart';
 import 'package:laboar/view/widgets/textformfield.dart';
 import 'package:laboar/view/screens/auth_screens/login.dart';
@@ -134,8 +133,8 @@ class RegisterScreen extends StatelessWidget {
                       height: media.height * 0.03,
                     ),
                     InkWell(
-                      onTap: () {
-                        AuthCubit.get(context).signInWithFacebook();
+                      onTap: () async {
+                        await AuthCubit.get(context).signInWithFacebook();
                       },
                       child: Container(
                         decoration: BoxDecoration(
@@ -162,8 +161,8 @@ class RegisterScreen extends StatelessWidget {
                       height: media.height * 0.03,
                     ),
                     InkWell(
-                      onTap: () {
-                        AuthCubit.get(context).signInWithGoogle();
+                      onTap: () async {
+                        await AuthCubit.get(context).signInWithGoogle(context);
                       },
                       child: Container(
                         decoration: BoxDecoration(
@@ -176,8 +175,9 @@ class RegisterScreen extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Image(
-                                image: AssetImage(
-                                    'assets/images/google_icon.png')),
+                              image:
+                                  AssetImage('assets/images/google_icon.png'),
+                            ),
                             SizedBox(
                               width: 8,
                             ),
@@ -192,7 +192,7 @@ class RegisterScreen extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text(
+                        const Text(
                           'Have an Account ? ',
                           style: TextStyle(
                               fontSize: 16, fontWeight: FontWeight.w500),
@@ -206,7 +206,7 @@ class RegisterScreen extends StatelessWidget {
                               ),
                             );
                           },
-                          child: Text(
+                          child: const Text(
                             'Sign in',
                             style: TextStyle(
                                 fontSize: 16, fontWeight: FontWeight.w700),

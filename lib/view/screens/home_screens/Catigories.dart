@@ -25,7 +25,7 @@ class CatigoriesScreen extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Container(
+            SizedBox(
               width: media.width,
               height: media.height,
               child: GridView.builder(

@@ -10,7 +10,7 @@ class ActiveMenuButton extends StatelessWidget {
       children: [
         Text(
           text,
-          style: TextStyle(
+          style: const TextStyle(
               fontSize: 16, fontWeight: FontWeight.w600, color: Colors.black),
         ),
         Padding(
@@ -20,7 +20,7 @@ class ActiveMenuButton extends StatelessWidget {
             height: media.height * 0.007,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(8),
-              color: Color(0xff5fd068),
+              color: const Color(0xff5fd068),
             ),
           ),
         )

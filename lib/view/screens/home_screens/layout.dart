@@ -6,7 +6,7 @@ import 'package:laboar/view/screens/home_screens/homepage.dart';
 import 'package:laboar/view/styles/colors.dart';
 
 class LayoutScreen extends StatefulWidget {
-  LayoutScreen({super.key});
+  const LayoutScreen({super.key});
 
   @override
   State<LayoutScreen> createState() => _LayoutScreenState();
@@ -24,7 +24,7 @@ class _LayoutScreenState extends State<LayoutScreen> {
       },
       {
         "title": "History",
-        "page": HistoryScreen(),
+        "page": const HistoryScreen(),
       },
       {
         "title": "Catigories",
@@ -32,7 +32,7 @@ class _LayoutScreenState extends State<LayoutScreen> {
       },
       {
         "title": "Profile",
-        "page": ProfileScreen(),
+        "page": const ProfileScreen(),
       },
     ];
 

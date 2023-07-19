@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:laboar/view/widgets/text_button.dart';
 import 'package:laboar/view/widgets/textformfield.dart';
-import 'package:laboar/view/styles/colors.dart';
 
 class RestPsswordScreen extends StatelessWidget {
   RestPsswordScreen({super.key});

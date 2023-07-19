@@ -26,12 +26,12 @@ class HistroyCard extends StatelessWidget {
                     Text(
                       jobName,
                       style:
-                          TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
+                          const TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
                     ),
                     Text(
                       jobId,
                       style:
-                          TextStyle(fontSize: 12, fontWeight: FontWeight.w500),
+                          const TextStyle(fontSize: 12, fontWeight: FontWeight.w500),
                     ),
                   ],
                 ),

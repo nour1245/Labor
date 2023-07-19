@@ -5,13 +5,12 @@ import 'package:laboar/blocs/authcubit/auth_cubit.dart';
 import 'package:laboar/blocs/authcubit/auth_state.dart';
 import 'package:laboar/view/screens/home_screens/homepage.dart';
 import 'package:laboar/view/widgets/text_button.dart';
-import 'package:laboar/view/screens/auth_screens/reset_pass.dart';
 import 'package:laboar/view/styles/colors.dart';
 import 'package:pinput/pinput.dart';
 
 class OtpScreen extends StatefulWidget {
   final String verificationId;
-  OtpScreen({super.key, required this.verificationId});
+  const OtpScreen({super.key, required this.verificationId});
 
   @override
   State<OtpScreen> createState() => _OtpScreenState();
@@ -41,13 +40,14 @@ class _OtpScreenState extends State<OtpScreen> {
       create: (context) => AuthCubit(),
       child: BlocConsumer<AuthCubit, AuthStates>(
         listener: (context, state) {
-          if (AuthStates is OtpVerificationSucces)
+          if (AuthStates is OtpVerificationSucces) {
             Navigator.push(
               context,
               MaterialPageRoute(
                 builder: (context) => HomeScreen(),
               ),
             );
+          }
         },
         builder: (context, state) {
           return Scaffold(
@@ -94,11 +94,9 @@ class _OtpScreenState extends State<OtpScreen> {
                       ),
                       Pinput(
                         controller: pinputController,
-                        length: 4,
+                        length: 6,
                         defaultPinTheme: defaultPinTheme,
-                        onCompleted: (pin) {
-                          setState(() => showError = pin != '5555');
-                        },
+                        onCompleted: (pin) {},
                         focusedPinTheme: defaultPinTheme.copyWith(
                           height: 68,
                           width: 64,

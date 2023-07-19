@@ -2,10 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:laboar/view/widgets/activebutton.dart';
 import 'package:laboar/view/widgets/history_card.dart';
 import 'package:laboar/view/widgets/notactivebutton.dart';
-import 'package:laboar/view/styles/colors.dart';
 
 class HistoryScreen extends StatefulWidget {
-  HistoryScreen({super.key});
+  const HistoryScreen({super.key});
 
   @override
   State<HistoryScreen> createState() => _HistoryScreenState();

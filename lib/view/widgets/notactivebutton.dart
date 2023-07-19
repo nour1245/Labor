@@ -11,7 +11,7 @@ class NotActiveMenuButton extends StatelessWidget {
       children: [
         Text(
           text,
-          style: TextStyle(
+          style: const TextStyle(
               fontSize: 16, fontWeight: FontWeight.w600, color: lightGrayColor),
         ),
       ],

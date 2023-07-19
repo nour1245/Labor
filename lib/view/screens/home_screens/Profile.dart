@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:laboar/view/screens/auth_screens/login.dart';
+import 'package:laboar/view/screens/home_screens/edit_profile.dart';
 import 'package:laboar/view/widgets/card.dart';
 import 'package:laboar/view/widgets/text_button.dart';
+
+import '../../../blocs/constants/constants.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -24,16 +28,16 @@ class ProfileScreen extends StatelessWidget {
             ),
             width: media.height * 0.10,
             height: media.height * 0.10,
-            child: const Image(
+            child: Image(
               fit: BoxFit.contain,
-              image: AssetImage('assets/images/logo.png'),
+              image: NetworkImage('${currentuser['photo']}'),
             ),
           ),
           SizedBox(
             height: media.height * 0.02,
           ),
-          const Text(
-            'USEr NAME',
+          Text(
+            '${currentuser['name']}',
             style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
           ),
           SizedBox(
@@ -49,7 +53,13 @@ class ProfileScreen extends StatelessWidget {
                   fontSize: 14,
                   fontWeight: FontWeight.w700),
             ),
-            funq: () {},
+            funq: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => EditProfileScreen(),
+                  ));
+            },
           ),
           SizedBox(
             height: media.height * 0.06,
@@ -85,7 +95,15 @@ class ProfileScreen extends StatelessWidget {
           DefaultCard(
             icon: Icons.exit_to_app,
             media: media,
-            ontap: () {},
+            ontap: () async {
+              currentuser = null;
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => LoginScreen(),
+                ),
+              );
+            },
             details: "",
             title: "Logout",
           ),

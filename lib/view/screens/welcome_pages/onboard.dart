@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:laboar/helper.dart';
 import 'package:laboar/view/widgets/text_button.dart';
 import 'package:laboar/view/screens/auth_screens/login.dart';
-import 'package:laboar/view/screens/welcome_pages/language_screen.dart';
 import 'package:laboar/view/styles/colors.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class OnboardScreen extends StatefulWidget {
-  OnboardScreen({super.key});
+  const OnboardScreen({super.key});
 
   @override
   State<OnboardScreen> createState() => _OnboardScreenState();
@@ -65,6 +65,7 @@ class _OnboardScreenState extends State<OnboardScreen> {
               padding: EdgeInsetsDirectional.only(end: media.width * 0.01),
               child: TextButton(
                 onPressed: () {
+                  CacheHelper.saveData(key: 'onboard', value: true);
                   Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
@@ -121,6 +122,7 @@ class _OnboardScreenState extends State<OnboardScreen> {
                     : "Next"),
                 funq: () {
                   if (curruntPage == pageViewDetails.length - 1) {
+                    CacheHelper.saveData(key: 'onboard', value: true);
                     Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
@@ -129,7 +131,7 @@ class _OnboardScreenState extends State<OnboardScreen> {
                     );
                   }
                   pageViewController.nextPage(
-                      duration: Duration(milliseconds: 100),
+                      duration: const Duration(milliseconds: 100),
                       curve: Curves.bounceIn);
                 }),
           ),

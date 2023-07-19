@@ -1,6 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -8,6 +8,7 @@ import 'package:laboar/blocs/constants/constants.dart';
 import 'package:laboar/model/usermodel.dart';
 import 'package:laboar/view/screens/auth_screens/otp.dart';
 import 'package:laboar/view/screens/home_screens/homepage.dart';
+import 'package:laboar/view/screens/home_screens/layout.dart';
 
 import 'auth_state.dart';
 
@@ -16,12 +17,12 @@ class AuthCubit extends Cubit<AuthStates> {
 
   static AuthCubit get(context) => BlocProvider.of(context);
 
+  //send phone otp
   phoneVerification(phonenumber, context) async {
     emit(PhoneVerificationLoading());
     await firebaseauth.verifyPhoneNumber(
       phoneNumber: phonenumber,
       verificationCompleted: (phoneAuthCredential) {
-        PhoneAuthCredential credential = phoneAuthCredential;
         emit(PhoneVerificationSucces());
       },
       verificationFailed: (error) {
@@ -37,16 +38,14 @@ class AuthCubit extends Cubit<AuthStates> {
     );
   }
 
+//otp screen
   signIn(verificationId, smsCode, context) async {
     emit(OtpVerificationLoading());
     PhoneAuthCredential credential = PhoneAuthProvider.credential(
       verificationId: verificationId,
       smsCode: smsCode,
     );
-    print("-------------Signcredential---------------");
-    print(credential);
 
-    print("-------------Signcredential---------------");
     try {
       await firebaseauth.signInWithCredential(credential);
       emit(OtpVerificationSucces());
@@ -54,7 +53,7 @@ class AuthCubit extends Cubit<AuthStates> {
       Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => HomeScreen(),
+          builder: (context) => LayoutScreen(),
         ),
       );
     } catch (e) {
@@ -63,6 +62,7 @@ class AuthCubit extends Cubit<AuthStates> {
     }
   }
 
+//create user in firestore database
   createUser(name, password, phone) {
     UserModel usermodel = UserModel(
       name: name,
@@ -82,7 +82,8 @@ class AuthCubit extends Cubit<AuthStates> {
     });
   }
 
-  Future<UserCredential> signInWithGoogle() async {
+//google login
+  Future<UserCredential> signInWithGoogle(context) async {
     emit(SignInWithGoogleLoading());
     // Trigger the authentication flow
     final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
@@ -96,15 +97,32 @@ class AuthCubit extends Cubit<AuthStates> {
       accessToken: googleAuth?.accessToken,
       idToken: googleAuth?.idToken,
     );
+
     emit(SignInWithGoogleSucess());
 
     // Once signed in, return the UserCredential
-    print("---------------Goglecredential-----------");
-    print(credential);
-    print("---------------Goglecredential-----------");
+
+    if (googleUser != null) {
+      await createUser(googleUser.displayName, '', '+20');
+      await firebaseFirestore
+          .collection('users')
+          .doc('user${googleUser.email}')
+          .get()
+          .then((value) {
+        currentuser = value.data();
+      }).catchError((e) {
+        print(e.toString());
+      });
+    }
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => LayoutScreen(),
+        ));
     return await firebaseauth.signInWithCredential(credential);
   }
 
+//facebook login
   Future<UserCredential> signInWithFacebook() async {
     emit(SignInWithFacebookLoading());
     // Trigger the sign-in flow
@@ -116,14 +134,39 @@ class AuthCubit extends Cubit<AuthStates> {
 
     emit(SignInWithFacebookSucess());
     // Once signed in, return the UserCredential
-    print("---------------facecredential-----------");
-    print(facebookAuthCredential);
-    print("---------------Facecredential-----------");
+    FacebookAuth.instance.getUserData().then((value) {
+      currentuser = value;
+    });
+
     return firebaseauth.signInWithCredential(facebookAuthCredential);
   }
 
-  signOut() async {
-    await firebaseauth.signOut();
-    emit(SignOut());
+//login with phone and password
+  userLogin(phone, password, context) async {
+    emit(LoginLoadingState());
+    await firebaseFirestore
+        .collection('users')
+        .doc("user$phone")
+        .get()
+        .then((value) {
+      currentuser = value.data();
+      currentuser!.forEach((key, value) {
+        if (key == 'password') {
+          if (value == password) {
+            emit(LoginSuccessState());
+            print('---------------userInfo----------------------');
+            print(currentuser!['name']);
+            print('----------------userInfo---------------------');
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => LayoutScreen(),
+                ));
+          } else {
+            emit(LoginErrorState("user Not Found"));
+          }
+        }
+      });
+    });
   }
 }
