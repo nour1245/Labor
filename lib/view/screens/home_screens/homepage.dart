@@ -48,11 +48,13 @@ class HomeScreen extends StatelessWidget {
                           TextStyle(fontSize: 14, fontWeight: FontWeight.w400),
                     ),
                     Text(
-                      '${currentuser['name']}',
+                      currentuser['name'] != null
+                          ? ' ${currentuser['name']}'
+                          : 'null',
                       style: const TextStyle(
                           color: yallowColor,
                           fontSize: 14,
-                          fontWeight: FontWeight.w500),
+                          fontWeight: FontWeight.w900),
                     ),
                   ],
                 ),

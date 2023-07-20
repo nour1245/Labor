@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:laboar/view/screens/auth_screens/login.dart';
 import 'package:laboar/view/screens/home_screens/edit_profile.dart';
+import 'package:laboar/view/screens/profile_screens/payment_methods.dart';
 import 'package:laboar/view/widgets/card.dart';
 import 'package:laboar/view/widgets/text_button.dart';
 
@@ -67,7 +68,13 @@ class ProfileScreen extends StatelessWidget {
           DefaultCard(
             icon: Icons.payment,
             media: media,
-            ontap: () {},
+            ontap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => PaymentMethods(),
+                  ));
+            },
             details: "Add your credit & debit cards",
             title: "Payment Methods",
           ),

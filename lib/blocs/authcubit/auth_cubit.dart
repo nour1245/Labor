@@ -103,7 +103,7 @@ class AuthCubit extends Cubit<AuthStates> {
     // Once signed in, return the UserCredential
 
     if (googleUser != null) {
-      await createUser(googleUser.displayName, '', '+20');
+      await createUser(googleUser.displayName, '', googleUser.email);
       await firebaseFirestore
           .collection('users')
           .doc('user${googleUser.email}')
@@ -167,6 +167,20 @@ class AuthCubit extends Cubit<AuthStates> {
           }
         }
       });
+    });
+  }
+
+  getUserData() async {
+    emit(getUserDataLoad());
+    await firebaseFirestore
+        .collection('users')
+        .doc('user${currentuser['phone']}')
+        .get()
+        .then((value) {
+      currentuser = value.data();
+      emit(getUserDataSuccess());
+    }).catchError((e) {
+      emit(getUserDataError());
     });
   }
 }

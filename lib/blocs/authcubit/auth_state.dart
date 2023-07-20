@@ -39,3 +39,9 @@ class LoginSuccessState extends AuthStates {}
 class LoginErrorState extends AuthStates {
   LoginErrorState(String s);
 }
+
+class getUserDataLoad extends AuthStates {}
+
+class getUserDataSuccess extends AuthStates {}
+
+class getUserDataError extends AuthStates {}

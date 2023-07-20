@@ -122,32 +122,33 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                         height: media.height * 0.09,
                       ),
                       TextButton.icon(
-                          style: ButtonStyle(
-                              backgroundColor: MaterialStatePropertyAll(
-                                Colors.red.withOpacity(0.2),
-                              ),
-                              iconColor: MaterialStatePropertyAll(Colors.red)),
-                          onPressed: () {
-                            firebaseFirestore
-                                .collection("users")
-                                .doc('user${currentuser['phone']}')
-                                .delete()
-                                .then((value) {
-                              Navigator.pushReplacement(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => LoginScreen(),
-                                  ));
-                            });
-                          },
-                          icon: const Icon(Icons.delete_outline),
-                          label: const Text(
-                            'Delete account',
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontWeight: FontWeight.w500,
-                                fontSize: 16),
-                          )),
+                        style: ButtonStyle(
+                            backgroundColor: MaterialStatePropertyAll(
+                              Colors.red.withOpacity(0.2),
+                            ),
+                            iconColor: MaterialStatePropertyAll(Colors.red)),
+                        onPressed: () async {
+                          await firebaseFirestore
+                              .collection("users")
+                              .doc('user${currentuser['phone']}')
+                              .delete()
+                              .then((value) {
+                            Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => LoginScreen(),
+                                ));
+                          });
+                        },
+                        icon: const Icon(Icons.delete_outline),
+                        label: const Text(
+                          'Delete account',
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontWeight: FontWeight.w500,
+                              fontSize: 16),
+                        ),
+                      ),
                     ],
                   ),
                 ),
