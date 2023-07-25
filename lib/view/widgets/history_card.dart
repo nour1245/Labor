@@ -8,9 +8,13 @@ class HistroyCard extends StatelessWidget {
       required this.media,
       required this.jobName,
       required this.jobId,
-      required this.type});
+      required this.type,
+      required this.date,
+      required this.worker});
   var media;
+  String worker;
   String type;
+  String date;
   String jobName;
   String jobId;
   @override
@@ -157,9 +161,9 @@ class HistroyCard extends StatelessWidget {
                     ],
                   ),
                   const Spacer(),
-                  const Text(
-                    '12/07/2023',
-                    style: TextStyle(
+                  Text(
+                    date,
+                    style: const TextStyle(
                         fontSize: 12,
                         fontWeight: FontWeight.w600,
                         color: lightGrayColor),
@@ -172,15 +176,15 @@ class HistroyCard extends StatelessWidget {
               Padding(
                 padding: EdgeInsetsDirectional.only(
                     start: media.width * 0.07, end: media.width * 0.04),
-                child: const Row(
+                child: Row(
                   children: [
                     Text(
-                      '1 Filipino worker under contract',
-                      style:
-                          TextStyle(fontSize: 12, fontWeight: FontWeight.w500),
+                      worker,
+                      style: const TextStyle(
+                          fontSize: 12, fontWeight: FontWeight.w500),
                     ),
-                    Spacer(),
-                    Column(
+                    const Spacer(),
+                    const Column(
                       children: [
                         Text(
                           'Price',

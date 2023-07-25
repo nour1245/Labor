@@ -6,6 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:laboar/blocs/appcubit/app_cubit.dart';
 import 'package:laboar/blocs/appcubit/app_state.dart';
+import 'package:laboar/main.dart';
 import 'package:laboar/view/screens/home_screens/layout.dart';
 import 'package:laboar/view/styles/colors.dart';
 import 'package:laboar/view/widgets/select_buttton.dart';
@@ -25,6 +26,8 @@ class OrederScreen extends StatefulWidget {
 
 class _OrederScreenState extends State<OrederScreen> {
   List<bool> timeSelected = List.generate(12, (index) => false);
+
+  late DateTime NewselectedDate;
 
   @override
   void initState() {
@@ -124,6 +127,19 @@ class _OrederScreenState extends State<OrederScreen> {
                                   currentStep += 1;
                                 });
                               } else {
+                                var value = {
+                                  "Period": atDayClicked ? "Day" : "Night",
+                                  "hours": "$hoursSelectedValue",
+                                  "nat": nationalitySelectedValue == null
+                                      ? "indian"
+                                      : '$nationalitySelectedValue',
+                                  "city": "$citySelectedValue",
+                                  "company": "United Group",
+                                  "price": "1500",
+                                  "service": "${widget.title}",
+                                  "date": "$NewselectedDate",
+                                };
+                                ordersBox!.add(value);
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
@@ -420,6 +436,9 @@ class _OrederScreenState extends State<OrederScreen> {
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
               ),
               DatePicker(
+                onDateChange: (selectedDate) {
+                  NewselectedDate = selectedDate;
+                },
                 DateTime.now(),
                 height: media.height * 0.10,
                 width: media.width * 0.20,

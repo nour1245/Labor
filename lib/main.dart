@@ -17,6 +17,9 @@ import 'generated/l10n.dart';
 
 Box? mybox;
 Box? userbox;
+Box? ordersBox;
+Box? address;
+
 openHiveBox(String boxname) async {
   if (!Hive.isBoxOpen(boxname)) {
     Hive.init((await getApplicationDocumentsDirectory()).path);
@@ -28,6 +31,8 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   mybox = await openHiveBox('cardBox');
   userbox = await openHiveBox('Userbox');
+  ordersBox = await openHiveBox('orders');
+  address = await openHiveBox('address');
   await CacheHelper.init();
 
   Bloc.observer = MyBlocObserver();

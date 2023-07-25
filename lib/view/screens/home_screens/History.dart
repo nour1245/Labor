@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:laboar/main.dart';
 import 'package:laboar/view/widgets/activebutton.dart';
 import 'package:laboar/view/widgets/history_card.dart';
 import 'package:laboar/view/widgets/notactivebutton.dart';
@@ -61,12 +62,32 @@ class _HistoryScreenState extends State<HistoryScreen> {
                 ),
               ),
               isOnePressed
-                  ? HistroyCard(
-                      type: 'Accpet',
-                      media: media,
-                      jobName: "contract cleaning",
-                      jobId: '25ds458126fs5dha')
+                  ? SizedBox(
+                      width: media.width,
+                      height: media.height * .70,
+                      child: ListView.separated(
+                        itemCount: ordersBox!.length,
+                        separatorBuilder: (BuildContext context, int index) {
+                          return const SizedBox(
+                            height: 10,
+                          );
+                        },
+                        itemBuilder: (BuildContext context, int index) {
+                          return HistroyCard(
+                              date: ordersBox!.getAt(index)['date'] ??
+                                  DateTime.now(),
+                              worker:
+                                  ordersBox!.getAt(index)['nat'] ?? "indian",
+                              type: 'on review',
+                              media: media,
+                              jobName: ordersBox!.getAt(index)['service'],
+                              jobId: '25ds458126fs5dha');
+                        },
+                      ),
+                    )
                   : HistroyCard(
+                      date: ordersBox!.getAt(0)['date'] ?? DateTime.now,
+                      worker: ordersBox!.getAt(0)['nat'] ?? 'indian',
                       type: 'Canceld',
                       media: media,
                       jobName: "Car Wash ",
