@@ -1,13 +1,12 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:laboar/blocs/constants/constants.dart';
+import 'package:laboar/main.dart';
 import 'package:laboar/model/usermodel.dart';
 import 'package:laboar/view/screens/auth_screens/otp.dart';
-import 'package:laboar/view/screens/home_screens/homepage.dart';
 import 'package:laboar/view/screens/home_screens/layout.dart';
 
 import 'auth_state.dart';
@@ -53,7 +52,7 @@ class AuthCubit extends Cubit<AuthStates> {
       Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => LayoutScreen(),
+          builder: (context) => const LayoutScreen(),
         ),
       );
     } catch (e) {
@@ -110,6 +109,7 @@ class AuthCubit extends Cubit<AuthStates> {
           .get()
           .then((value) {
         currentuser = value.data();
+        userbox!.add(currentuser);
       }).catchError((e) {
         print(e.toString());
       });
@@ -117,7 +117,7 @@ class AuthCubit extends Cubit<AuthStates> {
     Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => LayoutScreen(),
+          builder: (context) => const LayoutScreen(),
         ));
     return await firebaseauth.signInWithCredential(credential);
   }
@@ -136,6 +136,7 @@ class AuthCubit extends Cubit<AuthStates> {
     // Once signed in, return the UserCredential
     FacebookAuth.instance.getUserData().then((value) {
       currentuser = value;
+      userbox!.add(currentuser);
     });
 
     return firebaseauth.signInWithCredential(facebookAuthCredential);
@@ -144,29 +145,52 @@ class AuthCubit extends Cubit<AuthStates> {
 //login with phone and password
   userLogin(phone, password, context) async {
     emit(LoginLoadingState());
+    await firebaseFirestore.collection('users').doc("user$phone").get().then(
+      (value) {
+        currentuser = value.data();
+        userbox!.add(currentuser);
+        currentuser!.forEach(
+          (key, value) {
+            if (key == 'password') {
+              if (value == password) {
+                emit(LoginSuccessState());
+                print('---------------userInfo----------------------');
+                print(currentuser!['name']);
+                print('----------------userInfo---------------------');
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const LayoutScreen(),
+                    ));
+              } else {
+                emit(LoginErrorState("user Not Found"));
+              }
+            }
+          },
+        );
+      },
+    );
+  }
+
+  SaveNewData({passwordController, phoneController, NameController}) async {
+    emit(SaveNewDataLoadingState());
+    var newvalue = {
+      "uId": null,
+      "password": passwordController.text,
+      "phone": phoneController.text,
+      "name": NameController.text,
+      "photo":
+          'https://www.pngkey.com/png/detail/57-576740_black-person-png-businessperson.png'
+    };
     await firebaseFirestore
         .collection('users')
-        .doc("user$phone")
-        .get()
+        .doc('user${userbox!.getAt(0)['phone']}')
+        .set(newvalue)
         .then((value) {
-      currentuser = value.data();
-      currentuser!.forEach((key, value) {
-        if (key == 'password') {
-          if (value == password) {
-            emit(LoginSuccessState());
-            print('---------------userInfo----------------------');
-            print(currentuser!['name']);
-            print('----------------userInfo---------------------');
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => LayoutScreen(),
-                ));
-          } else {
-            emit(LoginErrorState("user Not Found"));
-          }
-        }
-      });
+      userbox!.putAt(0, newvalue);
+      emit(SaveNewDataSuccesState());
+    }).catchError((error) {
+      emit(SaveNewDataErrorState());
     });
   }
 

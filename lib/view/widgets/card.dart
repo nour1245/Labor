@@ -1,14 +1,19 @@
 import 'package:flutter/material.dart';
 
 class DefaultCard extends StatelessWidget {
-  DefaultCard(
-      {super.key,
-      required this.media,
-      required this.ontap,
-      required this.details,
-      required this.title,
-      required this.icon});
+  DefaultCard({
+    super.key,
+    required this.media,
+    required this.ontap,
+    required this.details,
+    required this.title,
+    required this.icon,
+    required this.arrow,
+    required this.iconswitch,
+  });
   var media;
+  Switch iconswitch;
+  bool arrow = true;
   IconData icon;
   Function() ontap;
   String title;
@@ -46,10 +51,12 @@ class DefaultCard extends StatelessWidget {
                   ],
                 ),
                 const Spacer(),
-                Icon(
-                  Icons.arrow_forward_ios_rounded,
-                  size: media.width * 0.05,
-                )
+                arrow
+                    ? Icon(
+                        Icons.arrow_forward_ios_rounded,
+                        size: media.width * 0.05,
+                      )
+                    : iconswitch,
               ],
             ),
           ),

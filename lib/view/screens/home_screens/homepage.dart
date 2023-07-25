@@ -3,10 +3,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:laboar/blocs/authcubit/auth_cubit.dart';
 import 'package:laboar/blocs/authcubit/auth_state.dart';
 import 'package:laboar/view/screens/home_screens/Catigories.dart';
+import 'package:laboar/view/screens/home_screens/order.dart';
 import 'package:laboar/view/styles/colors.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
-import '../../../blocs/constants/constants.dart';
+import '../../../main.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({super.key});
@@ -44,12 +45,12 @@ class HomeScreen extends StatelessWidget {
                   children: [
                     Text(
                       DateTime.now().hour > 19 ? "Good Night" : "Good Morning",
-                      style:
-                          TextStyle(fontSize: 14, fontWeight: FontWeight.w400),
+                      style: const TextStyle(
+                          fontSize: 14, fontWeight: FontWeight.w400),
                     ),
                     Text(
-                      currentuser['name'] != null
-                          ? ' ${currentuser['name']}'
+                      userbox!.getAt(0) != null
+                          ? userbox!.getAt(0)['name']
                           : 'null',
                       style: const TextStyle(
                           color: yallowColor,
@@ -169,7 +170,7 @@ class HomeScreen extends StatelessWidget {
                     ),
                     itemCount: grids.length,
                     itemBuilder: (BuildContext context, int index) {
-                      return gridViewItem(media, index);
+                      return gridViewItem(media, index, context);
                     },
                   ),
                 ),
@@ -195,23 +196,34 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  gridViewItem(media, index) {
-    return Card(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Image(
-            image: AssetImage(grids[index]['image']),
-          ),
-          Padding(
-            padding: EdgeInsets.all(media.height * 0.01),
-            child: Text(
-              grids[index]['title'],
-              style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w800),
+  gridViewItem(media, index, context) {
+    return InkWell(
+      onTap: () {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => OrederScreen(
+                  image: grids[index]['image'], title: grids[index]['title']),
+            ));
+      },
+      child: Card(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Image(
+              image: AssetImage(grids[index]['image']),
             ),
-          ),
-        ],
+            Padding(
+              padding: EdgeInsets.all(media.height * 0.01),
+              child: Text(
+                grids[index]['title'],
+                style:
+                    const TextStyle(fontSize: 18, fontWeight: FontWeight.w800),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

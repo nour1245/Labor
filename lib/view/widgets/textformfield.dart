@@ -10,10 +10,12 @@ class DefaultTextForm extends StatelessWidget {
     required this.hinttext,
     required this.obscure,
     required this.suffix,
+    required this.validator,
   });
 
   TextEditingController Controller;
   String text;
+  String? Function(String?)? validator;
   Icon? suffix;
   bool obscure = false;
   TextInputType keyboardType;
@@ -32,6 +34,7 @@ class DefaultTextForm extends StatelessWidget {
           height: media.height * .01,
         ),
         TextFormField(
+          validator: validator,
           keyboardType: keyboardType,
           obscureText: obscure,
           controller: Controller,

@@ -62,13 +62,15 @@ class _HistoryScreenState extends State<HistoryScreen> {
               ),
               isOnePressed
                   ? HistroyCard(
+                      type: 'Accpet',
                       media: media,
                       jobName: "contract cleaning",
                       jobId: '25ds458126fs5dha')
                   : HistroyCard(
+                      type: 'Canceld',
                       media: media,
-                      jobName: "contract ",
-                      jobId: '25ds458126fs5dha'),
+                      jobName: "Car Wash ",
+                      jobId: '25ds45g53dha'),
             ],
           ),
         ),

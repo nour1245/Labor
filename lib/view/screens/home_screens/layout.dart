@@ -32,7 +32,7 @@ class _LayoutScreenState extends State<LayoutScreen> {
       },
       {
         "title": "Profile",
-        "page": const ProfileScreen(),
+        "page": ProfileScreen(),
       },
     ];
 

@@ -12,7 +12,8 @@ class RegisterScreen extends StatelessWidget {
   TextEditingController NameController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
-
+  @override
+  final key = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     var media = MediaQuery.of(context).size;
@@ -21,200 +22,223 @@ class RegisterScreen extends StatelessWidget {
       child: BlocConsumer<AuthCubit, AuthStates>(
         listener: (context, state) {},
         builder: (context, state) {
-          return Scaffold(
-            body: SingleChildScrollView(
-              child: Padding(
-                padding: EdgeInsetsDirectional.only(top: media.height * 0.05),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    const Center(
-                        child: Text(
-                      'Register',
-                      style:
-                          TextStyle(fontSize: 28, fontWeight: FontWeight.w700),
-                    )),
-                    SizedBox(
-                      height: media.height * 0.02,
-                    ),
-                    Center(
-                      child: Padding(
-                        padding: EdgeInsetsDirectional.only(
-                          start: media.width * 0.15,
-                          end: media.width * 0.15,
-                        ),
-                        child: const Text(
-                          'Please Enter your Phone and password'
-                          ' to continue',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                              fontSize: 14, fontWeight: FontWeight.w500),
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      height: media.height * 0.02,
-                    ),
-                    Padding(
-                      padding: EdgeInsetsDirectional.only(
-                        start: media.width * 0.07,
-                        end: media.width * 0.07,
-                      ),
-                      child: DefaultTextForm(
-                        Controller: NameController,
-                        text: 'Name',
-                        keyboardType: TextInputType.name,
-                        hinttext: 'your name',
-                        obscure: false,
-                        suffix: const Icon(Icons.person),
-                      ),
-                    ),
-                    SizedBox(
-                      height: media.height * 0.02,
-                    ),
-                    Padding(
-                      padding: EdgeInsetsDirectional.only(
-                        start: media.width * 0.07,
-                        end: media.width * 0.07,
-                      ),
-                      child: DefaultTextForm(
-                        Controller: phoneController,
-                        text: 'Phone',
-                        keyboardType: TextInputType.phone,
-                        hinttext: 'phone number',
-                        obscure: false,
-                        suffix: const Icon(Icons.phone),
-                      ),
-                    ),
-                    SizedBox(
-                      height: media.height * 0.03,
-                    ),
-                    Padding(
-                      padding: EdgeInsetsDirectional.only(
-                        start: media.width * 0.07,
-                        end: media.width * 0.07,
-                      ),
-                      child: DefaultTextForm(
-                        Controller: passwordController,
-                        text: 'Password',
-                        keyboardType: TextInputType.visiblePassword,
-                        hinttext: 'Enter your password',
-                        obscure: true,
-                        suffix: const Icon(Icons.remove_red_eye_outlined),
-                      ),
-                    ),
-                    SizedBox(
-                      height: media.height * 0.03,
-                    ),
-                    DefaultButton(
-                      height: media.height * 0.07,
-                      width: media.width * .90,
-                      text: const Text(
+          return Form(
+            key: key,
+            autovalidateMode: AutovalidateMode.onUserInteraction,
+            child: Scaffold(
+              body: SingleChildScrollView(
+                child: Padding(
+                  padding: EdgeInsetsDirectional.only(top: media.height * 0.05),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      const Center(
+                          child: Text(
                         'Register',
                         style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 18,
-                            fontWeight: FontWeight.w700),
+                            fontSize: 28, fontWeight: FontWeight.w700),
+                      )),
+                      SizedBox(
+                        height: media.height * 0.02,
                       ),
-                      funq: () async {
-                        await AuthCubit.get(context)
-                            .phoneVerification(phoneController.text, context);
-                        await AuthCubit.get(context).createUser(
-                            NameController.text,
-                            passwordController.text,
-                            phoneController.text);
-                      },
-                    ),
-                    SizedBox(
-                      height: media.height * 0.03,
-                    ),
-                    const Text("OR"),
-                    SizedBox(
-                      height: media.height * 0.03,
-                    ),
-                    InkWell(
-                      onTap: () async {
-                        await AuthCubit.get(context).signInWithFacebook();
-                      },
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: greenColor.withOpacity(0.05),
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                        width: media.width * 0.90,
-                        height: media.height * 0.08,
-                        child: const Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Image(
-                                image:
-                                    AssetImage('assets/images/face_icon.png')),
-                            SizedBox(
-                              width: 8,
-                            ),
-                            Text('Facebook'),
-                          ],
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      height: media.height * 0.03,
-                    ),
-                    InkWell(
-                      onTap: () async {
-                        await AuthCubit.get(context).signInWithGoogle(context);
-                      },
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: greenColor.withOpacity(0.05),
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                        width: media.width * 0.90,
-                        height: media.height * 0.08,
-                        child: const Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Image(
-                              image:
-                                  AssetImage('assets/images/google_icon.png'),
-                            ),
-                            SizedBox(
-                              width: 8,
-                            ),
-                            Text('Google'),
-                          ],
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      height: media.height * .01,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        const Text(
-                          'Have an Account ? ',
-                          style: TextStyle(
-                              fontSize: 16, fontWeight: FontWeight.w500),
-                        ),
-                        InkWell(
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => LoginScreen(),
-                              ),
-                            );
-                          },
+                      Center(
+                        child: Padding(
+                          padding: EdgeInsetsDirectional.only(
+                            start: media.width * 0.15,
+                            end: media.width * 0.15,
+                          ),
                           child: const Text(
-                            'Sign in',
+                            'Please Enter your Phone and password'
+                            ' to continue',
+                            textAlign: TextAlign.center,
                             style: TextStyle(
-                                fontSize: 16, fontWeight: FontWeight.w700),
+                                fontSize: 14, fontWeight: FontWeight.w500),
                           ),
                         ),
-                      ],
-                    ),
-                  ],
+                      ),
+                      SizedBox(
+                        height: media.height * 0.02,
+                      ),
+                      Padding(
+                        padding: EdgeInsetsDirectional.only(
+                          start: media.width * 0.07,
+                          end: media.width * 0.07,
+                        ),
+                        child: DefaultTextForm(
+                          validator: (p3) {
+                            if (p3!.isEmpty) {
+                              return "enter value";
+                            }
+                            return null;
+                          },
+                          Controller: NameController,
+                          text: 'Name',
+                          keyboardType: TextInputType.name,
+                          hinttext: 'your name',
+                          obscure: false,
+                          suffix: const Icon(Icons.person),
+                        ),
+                      ),
+                      SizedBox(
+                        height: media.height * 0.02,
+                      ),
+                      Padding(
+                        padding: EdgeInsetsDirectional.only(
+                          start: media.width * 0.07,
+                          end: media.width * 0.07,
+                        ),
+                        child: DefaultTextForm(
+                          validator: (p2) {
+                            if (p2!.isEmpty) {
+                              return "enter value";
+                            }
+                            return null;
+                          },
+                          Controller: phoneController,
+                          text: 'Phone',
+                          keyboardType: TextInputType.phone,
+                          hinttext: 'phone number',
+                          obscure: false,
+                          suffix: const Icon(Icons.phone),
+                        ),
+                      ),
+                      SizedBox(
+                        height: media.height * 0.03,
+                      ),
+                      Padding(
+                        padding: EdgeInsetsDirectional.only(
+                          start: media.width * 0.07,
+                          end: media.width * 0.07,
+                        ),
+                        child: DefaultTextForm(
+                          validator: (p1) {
+                            if (p1!.isEmpty) {
+                              return "enter value";
+                            }
+                            return null;
+                          },
+                          Controller: passwordController,
+                          text: 'Password',
+                          keyboardType: TextInputType.visiblePassword,
+                          hinttext: 'Enter your password',
+                          obscure: true,
+                          suffix: const Icon(Icons.remove_red_eye_outlined),
+                        ),
+                      ),
+                      SizedBox(
+                        height: media.height * 0.03,
+                      ),
+                      DefaultButton(
+                        height: media.height * 0.07,
+                        width: media.width * .90,
+                        text: const Text(
+                          'Register',
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 18,
+                              fontWeight: FontWeight.w700),
+                        ),
+                        funq: () async {
+                          await AuthCubit.get(context)
+                              .phoneVerification(phoneController.text, context);
+                          await AuthCubit.get(context).createUser(
+                              NameController.text,
+                              passwordController.text,
+                              phoneController.text);
+                        },
+                      ),
+                      SizedBox(
+                        height: media.height * 0.03,
+                      ),
+                      const Text("OR"),
+                      SizedBox(
+                        height: media.height * 0.03,
+                      ),
+                      InkWell(
+                        onTap: () async {
+                          await AuthCubit.get(context).signInWithFacebook();
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: greenColor.withOpacity(0.05),
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                          width: media.width * 0.90,
+                          height: media.height * 0.08,
+                          child: const Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Image(
+                                  image: AssetImage(
+                                      'assets/images/face_icon.png')),
+                              SizedBox(
+                                width: 8,
+                              ),
+                              Text('Facebook'),
+                            ],
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: media.height * 0.03,
+                      ),
+                      InkWell(
+                        onTap: () async {
+                          await AuthCubit.get(context)
+                              .signInWithGoogle(context);
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: greenColor.withOpacity(0.05),
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                          width: media.width * 0.90,
+                          height: media.height * 0.08,
+                          child: const Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Image(
+                                image:
+                                    AssetImage('assets/images/google_icon.png'),
+                              ),
+                              SizedBox(
+                                width: 8,
+                              ),
+                              Text('Google'),
+                            ],
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: media.height * .01,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const Text(
+                            'Have an Account ? ',
+                            style: TextStyle(
+                                fontSize: 16, fontWeight: FontWeight.w500),
+                          ),
+                          InkWell(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => LoginScreen(),
+                                ),
+                              );
+                            },
+                            child: const Text(
+                              'Sign in',
+                              style: TextStyle(
+                                  fontSize: 16, fontWeight: FontWeight.w700),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),

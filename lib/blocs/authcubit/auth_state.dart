@@ -45,3 +45,9 @@ class getUserDataLoad extends AuthStates {}
 class getUserDataSuccess extends AuthStates {}
 
 class getUserDataError extends AuthStates {}
+
+class SaveNewDataSuccesState extends AuthStates {}
+
+class SaveNewDataErrorState extends AuthStates {}
+
+class SaveNewDataLoadingState extends AuthStates {}

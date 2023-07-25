@@ -63,7 +63,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '215678373928',
     projectId: 'labor-2335c',
     storageBucket: 'labor-2335c.appspot.com',
-    iosClientId: '215678373928-hqbhfajbokomnr9hcjfd36gmpl58h2eg.apps.googleusercontent.com',
+    iosClientId:
+        '215678373928-hqbhfajbokomnr9hcjfd36gmpl58h2eg.apps.googleusercontent.com',
     iosBundleId: 'com.example.laboar',
   );
 }

@@ -28,11 +28,16 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  adaptive_dialog: ^1.9.0
   another_flutter_splash_screen: ^1.1.4
   bloc: ^8.1.2
+  calendar_timeline: ^1.1.2
   cloud_firestore: ^4.8.3
+  conditional_builder_null_safety: ^0.0.6
   country_code_picker: ^3.0.0
   cupertino_icons: ^1.0.2
+  date_picker_timeline: ^1.2.5
+  dropdown_button2: ^2.3.6
   firebase_auth: ^4.6.3
   firebase_core: ^2.14.0
   firebase_storage: ^11.2.4
@@ -44,10 +49,14 @@ dependencies:
     sdk: flutter
   google_fonts: ^5.1.0
   google_sign_in: ^6.1.4
+  hive: ^2.2.3
+  hive_flutter: ^1.1.0
   image_picker: ^1.0.1
+  path_provider: ^2.0.15
   pinput: ^2.2.31
   shared_preferences: ^2.2.0
   smooth_page_indicator: ^1.1.0
+  toasty_snackbar: ^0.0.1
   u_credit_card: ^1.0.3
 
 dev_dependencies:
