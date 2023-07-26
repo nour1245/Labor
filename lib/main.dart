@@ -63,7 +63,6 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   void initState() {
-    print(localebox!.getAt(localebox!.length - 1));
     setState(() {
       if (localebox!.isNotEmpty) {
         locale = Locale(localebox!.getAt(localebox!.length - 1));

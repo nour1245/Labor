@@ -112,5 +112,6 @@
     "cardNumber": "رقم البطاقة",
     "addAddress": "اضافة عنوان",
     "Select": "اختيار",
-    "SelectLanguage": "اختار لغة"
+    "SelectLanguage": "اختار لغة",
+    "Balance": "الرصيد"
 }

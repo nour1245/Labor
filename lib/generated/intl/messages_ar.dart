@@ -34,6 +34,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "AnAuthentecationcodehasbeensentto":
             MessageLookupByLibrary.simpleMessage("تم ارسال كود التفعيل"),
         "Area": MessageLookupByLibrary.simpleMessage("المنطقة"),
+        "Balance": MessageLookupByLibrary.simpleMessage("الرصيد"),
         "Canceld": MessageLookupByLibrary.simpleMessage("الغيت"),
         "CarWash": MessageLookupByLibrary.simpleMessage("غسيل سيارات"),
         "CardName": MessageLookupByLibrary.simpleMessage("الاسم"),

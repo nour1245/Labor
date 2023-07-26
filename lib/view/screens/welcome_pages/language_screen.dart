@@ -8,6 +8,7 @@ import 'package:laboar/generated/l10n.dart';
 
 import 'package:laboar/view/styles/colors.dart';
 import 'package:radio_group_v2/radio_group_v2.dart';
+import 'package:toasty_snackbar/toasty_snackbar.dart';
 
 import '../../widgets/text_button.dart';
 
@@ -77,8 +78,12 @@ class _LanguageScreenState extends State<LanguageScreen> {
                     SizedBox(height: media.height * 0.03),
                     DefaultButton(
                       funq: () {
-                        AppCubit.get(context).setLocale(selectedLangue!);
+                        AppCubit.get(context).setLocale(selectedLangue ?? 'en');
                         Navigator.pop(context);
+                        context.showToastySnackbar(
+                            "Info",
+                            "Restart Application to use the new languge",
+                            AlertType.success);
                       },
                       height: media.height * 0.07,
                       width: media.width * 0.90,

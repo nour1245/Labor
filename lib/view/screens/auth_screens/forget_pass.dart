@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:laboar/blocs/authcubit/auth_cubit.dart';
 import 'package:laboar/blocs/authcubit/auth_state.dart';
@@ -29,6 +30,7 @@ class ForgetPasswordScreen extends StatelessWidget {
                 foregroundColor: Colors.black,
                 backgroundColor: Colors.transparent,
                 elevation: 0,
+                systemOverlayStyle: SystemUiOverlayStyle.dark,
               ),
               body: SingleChildScrollView(
                 child: Padding(

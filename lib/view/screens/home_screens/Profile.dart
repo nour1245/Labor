@@ -4,6 +4,7 @@ import 'package:laboar/main.dart';
 import 'package:laboar/view/screens/auth_screens/login.dart';
 import 'package:laboar/view/screens/home_screens/address.dart';
 import 'package:laboar/view/screens/home_screens/edit_profile.dart';
+import 'package:laboar/view/screens/home_screens/wallet.dart';
 import 'package:laboar/view/screens/profile_screens/payment_methods.dart';
 import 'package:laboar/view/screens/welcome_pages/language_screen.dart';
 import 'package:laboar/view/widgets/card.dart';
@@ -149,7 +150,13 @@ class ProfileScreen extends StatelessWidget {
               ),
               icon: Icons.wallet,
               media: media,
-              ontap: () {},
+              ontap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const WalletScreen(),
+                    ));
+              },
               details: "",
               title: S.of(context).Wallet,
             ),

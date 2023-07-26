@@ -35,6 +35,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage(
                 "An Authentecation code has been sent to"),
         "Area": MessageLookupByLibrary.simpleMessage("Area"),
+        "Balance": MessageLookupByLibrary.simpleMessage("Balance"),
         "Canceld": MessageLookupByLibrary.simpleMessage("Canceld"),
         "CarWash": MessageLookupByLibrary.simpleMessage("Car Wash"),
         "CardName": MessageLookupByLibrary.simpleMessage("Card Name"),

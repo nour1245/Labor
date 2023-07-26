@@ -112,5 +112,6 @@
     "cardNumber": "card Number",
     "addAddress": "add Address",
     "Select": "Select",
-    "SelectLanguage": "Select Language"
+    "SelectLanguage": "Select Language",
+    "Balance": "Balance"
 }
