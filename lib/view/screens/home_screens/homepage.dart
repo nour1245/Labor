@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:laboar/blocs/authcubit/auth_cubit.dart';
 import 'package:laboar/blocs/authcubit/auth_state.dart';
+import 'package:laboar/generated/l10n.dart';
 import 'package:laboar/view/screens/home_screens/Catigories.dart';
 import 'package:laboar/view/screens/home_screens/order.dart';
 import 'package:laboar/view/styles/colors.dart';
@@ -13,10 +14,10 @@ class HomeScreen extends StatelessWidget {
   HomeScreen({super.key});
 
   final List grids = [
-    {"image": "assets/images/hourly.png", "title": "Hourly Cleaning"},
-    {"image": "assets/images/car wash.png", "title": "Car Wash"},
-    {"image": "assets/images/plumbing.png", "title": "plumbing"},
-    {"image": "assets/images/electrical.png", "title": "Electrical"}
+    {"image": "assets/images/hourly.png", "title": S.current.HourlyCleaning},
+    {"image": "assets/images/car wash.png", "title": S.current.CarWash},
+    {"image": "assets/images/plumbing.png", "title": S.current.plumbing},
+    {"image": "assets/images/electrical.png", "title": S.current.Electrical}
   ];
 
   @override
@@ -44,7 +45,9 @@ class HomeScreen extends StatelessWidget {
                 Row(
                   children: [
                     Text(
-                      DateTime.now().hour > 19 ? "Good Night" : "Good Morning",
+                      DateTime.now().hour > 19
+                          ? S.of(context).GoodNight
+                          : S.of(context).GoodMorning,
                       style: const TextStyle(
                           fontSize: 14, fontWeight: FontWeight.w400),
                     ),
@@ -62,10 +65,11 @@ class HomeScreen extends StatelessWidget {
                 SizedBox(
                   height: media.height * 0.04,
                 ),
-                const Text(
-                  'Find your home service            '
-                  'Need a helping hand today?',
-                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.w700),
+                Text(
+                  S.of(context).Findyourhomeservice +
+                      S.of(context).Needahelpinghandtoday,
+                  style: const TextStyle(
+                      fontSize: 24, fontWeight: FontWeight.w700),
                 ),
                 SizedBox(
                   height: media.height * 0.04,
@@ -89,16 +93,16 @@ class HomeScreen extends StatelessWidget {
                       SizedBox(
                         width: media.width * 0.01,
                       ),
-                      const Expanded(
+                      Expanded(
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              'your location',
+                              S.of(context).yourlocation,
                               textAlign: TextAlign.start,
-                              style: TextStyle(color: lightGrayColor),
+                              style: const TextStyle(color: lightGrayColor),
                             ),
-                            Text(
+                            const Text(
                               'Jiddah Alexander Language School , ALS',
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
@@ -139,10 +143,10 @@ class HomeScreen extends StatelessWidget {
                 ),
                 Row(
                   children: [
-                    const Text(
-                      'Our Servies',
-                      style:
-                          TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
+                    Text(
+                      S.of(context).OurServies,
+                      style: const TextStyle(
+                          fontSize: 18, fontWeight: FontWeight.w700),
                     ),
                     const Spacer(),
                     TextButton(
@@ -151,9 +155,9 @@ class HomeScreen extends StatelessWidget {
                           builder: (context) => CatigoriesScreen(),
                         ));
                       },
-                      child: const Text(
-                        "See All",
-                        style: TextStyle(
+                      child: Text(
+                        S.of(context).SeeAll,
+                        style: const TextStyle(
                             color: greenColor,
                             fontSize: 12,
                             fontWeight: FontWeight.w700),

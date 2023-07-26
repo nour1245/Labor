@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:laboar/blocs/authcubit/auth_cubit.dart';
 import 'package:laboar/blocs/authcubit/auth_state.dart';
+import 'package:laboar/generated/l10n.dart';
 import 'package:laboar/view/widgets/text_button.dart';
 import 'package:laboar/view/widgets/textformfield.dart';
 import 'package:laboar/view/screens/auth_screens/login.dart';
@@ -32,10 +33,10 @@ class RegisterScreen extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      const Center(
+                      Center(
                           child: Text(
-                        'Register',
-                        style: TextStyle(
+                        S.of(context).Register,
+                        style: const TextStyle(
                             fontSize: 28, fontWeight: FontWeight.w700),
                       )),
                       SizedBox(
@@ -47,11 +48,11 @@ class RegisterScreen extends StatelessWidget {
                             start: media.width * 0.15,
                             end: media.width * 0.15,
                           ),
-                          child: const Text(
-                            'Please Enter your Phone and password'
-                            ' to continue',
+                          child: Text(
+                            S.of(context).PleaseEnteryourPhoneandpassword +
+                                S.of(context).tocontinue,
                             textAlign: TextAlign.center,
-                            style: TextStyle(
+                            style: const TextStyle(
                                 fontSize: 14, fontWeight: FontWeight.w500),
                           ),
                         ),
@@ -67,14 +68,14 @@ class RegisterScreen extends StatelessWidget {
                         child: DefaultTextForm(
                           validator: (p3) {
                             if (p3!.isEmpty) {
-                              return "enter value";
+                              return S.of(context).entervalue;
                             }
                             return null;
                           },
                           Controller: NameController,
-                          text: 'Name',
+                          text: S.of(context).Name,
                           keyboardType: TextInputType.name,
-                          hinttext: 'your name',
+                          hinttext: S.of(context).yourname,
                           obscure: false,
                           suffix: const Icon(Icons.person),
                         ),
@@ -90,14 +91,14 @@ class RegisterScreen extends StatelessWidget {
                         child: DefaultTextForm(
                           validator: (p2) {
                             if (p2!.isEmpty) {
-                              return "enter value";
+                              return S.of(context).entervalue;
                             }
                             return null;
                           },
                           Controller: phoneController,
-                          text: 'Phone',
+                          text: S.of(context).Phone,
                           keyboardType: TextInputType.phone,
-                          hinttext: 'phone number',
+                          hinttext: S.of(context).phonenumber,
                           obscure: false,
                           suffix: const Icon(Icons.phone),
                         ),
@@ -113,14 +114,14 @@ class RegisterScreen extends StatelessWidget {
                         child: DefaultTextForm(
                           validator: (p1) {
                             if (p1!.isEmpty) {
-                              return "enter value";
+                              return S.of(context).entervalue;
                             }
                             return null;
                           },
                           Controller: passwordController,
-                          text: 'Password',
+                          text: S.of(context).Password,
                           keyboardType: TextInputType.visiblePassword,
-                          hinttext: 'Enter your password',
+                          hinttext: S.of(context).Enteryourpassword,
                           obscure: true,
                           suffix: const Icon(Icons.remove_red_eye_outlined),
                         ),
@@ -131,9 +132,9 @@ class RegisterScreen extends StatelessWidget {
                       DefaultButton(
                         height: media.height * 0.07,
                         width: media.width * .90,
-                        text: const Text(
-                          'Register',
-                          style: TextStyle(
+                        text: Text(
+                          S.of(context).Register,
+                          style: const TextStyle(
                               color: Colors.white,
                               fontSize: 18,
                               fontWeight: FontWeight.w700),
@@ -150,7 +151,7 @@ class RegisterScreen extends StatelessWidget {
                       SizedBox(
                         height: media.height * 0.03,
                       ),
-                      const Text("OR"),
+                      Text(S.of(context).OR),
                       SizedBox(
                         height: media.height * 0.03,
                       ),
@@ -165,16 +166,16 @@ class RegisterScreen extends StatelessWidget {
                           ),
                           width: media.width * 0.90,
                           height: media.height * 0.08,
-                          child: const Row(
+                          child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Image(
+                              const Image(
                                   image: AssetImage(
                                       'assets/images/face_icon.png')),
-                              SizedBox(
+                              const SizedBox(
                                 width: 8,
                               ),
-                              Text('Facebook'),
+                              Text(S.of(context).Facebook),
                             ],
                           ),
                         ),
@@ -194,17 +195,17 @@ class RegisterScreen extends StatelessWidget {
                           ),
                           width: media.width * 0.90,
                           height: media.height * 0.08,
-                          child: const Row(
+                          child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Image(
+                              const Image(
                                 image:
                                     AssetImage('assets/images/google_icon.png'),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 8,
                               ),
-                              Text('Google'),
+                              Text(S.of(context).Google),
                             ],
                           ),
                         ),
@@ -215,9 +216,9 @@ class RegisterScreen extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          const Text(
-                            'Have an Account ? ',
-                            style: TextStyle(
+                          Text(
+                            S.of(context).HaveanAccount,
+                            style: const TextStyle(
                                 fontSize: 16, fontWeight: FontWeight.w500),
                           ),
                           InkWell(
@@ -229,9 +230,9 @@ class RegisterScreen extends StatelessWidget {
                                 ),
                               );
                             },
-                            child: const Text(
-                              'Sign in',
-                              style: TextStyle(
+                            child: Text(
+                              S.of(context).Signin,
+                              style: const TextStyle(
                                   fontSize: 16, fontWeight: FontWeight.w700),
                             ),
                           ),

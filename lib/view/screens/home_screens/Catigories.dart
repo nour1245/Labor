@@ -1,15 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:laboar/generated/l10n.dart';
 
 class CatigoriesScreen extends StatelessWidget {
   CatigoriesScreen({super.key});
   List grids = [
-    {"image": "assets/images/hourly.png", "title": "Hourly Cleaning"},
-    {"image": "assets/images/car wash.png", "title": "Car Wash"},
-    {"image": "assets/images/plumbing.png", "title": "plumbing"},
-    {"image": "assets/images/electrical.png", "title": "Electrical"},
-    {"image": "assets/images/contract.png", "title": "Contract Cleaning"},
-    {"image": "assets/images/condition.png", "title": "Conditioning"}
+    {"image": "assets/images/hourly.png", "title": S.current.HourlyCleaning},
+    {"image": "assets/images/car wash.png", "title": S.current.CarWash},
+    {"image": "assets/images/plumbing.png", "title": S.current.plumbing},
+    {"image": "assets/images/electrical.png", "title": S.current.Electrical},
+    {
+      "image": "assets/images/contract.png",
+      "title": S.current.ContractCleaning
+    },
+    {"image": "assets/images/condition.png", "title": S.current.Conditioning}
   ];
 
   @override

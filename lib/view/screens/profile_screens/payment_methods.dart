@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:laboar/generated/l10n.dart';
 import 'package:laboar/main.dart';
 import 'package:laboar/view/screens/profile_screens/addcard.dart';
 import 'package:laboar/view/widgets/text_button.dart';
@@ -61,7 +62,7 @@ class _PaymentMethodsState extends State<PaymentMethods> {
                           },
                         ),
                       )
-                    : const Text("Add Card Now"),
+                    : Center(child: Text(S.of(context).AddCardNow)),
                 const Spacer(),
                 Padding(
                   padding:
@@ -69,7 +70,7 @@ class _PaymentMethodsState extends State<PaymentMethods> {
                   child: DefaultButton(
                       height: media.height * 0.07,
                       width: media.width * 0.70,
-                      text: const Text('+ Add Card'),
+                      text: Text(S.of(context).AddCard),
                       funq: () {
                         Navigator.push(
                             context,

@@ -1,6 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:laboar/blocs/appcubit/app_state.dart';
 import 'package:laboar/blocs/constants/constants.dart';
+import 'package:laboar/main.dart';
 
 class AppCubit extends Cubit<AppStates> {
   AppCubit() : super(AppInitial());
@@ -19,5 +20,13 @@ class AppCubit extends Cubit<AppStates> {
     }).catchError((error) {
       emit(DataError());
     });
+  }
+
+  setLocale(String value) {
+    if (value == 'Arabic') {
+      localebox!.add('ar');
+    } else {
+      localebox!.add('en');
+    }
   }
 }

@@ -194,6 +194,8 @@ class AuthCubit extends Cubit<AuthStates> {
     });
   }
 
+  setLange() {}
+
   getUserData() async {
     emit(getUserDataLoad());
     await firebaseFirestore

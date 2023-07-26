@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:laboar/generated/l10n.dart';
 import 'package:laboar/view/widgets/text_button.dart';
 import 'package:laboar/view/widgets/textformfield.dart';
 
@@ -26,10 +27,11 @@ class RestPsswordScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                const Center(
+                Center(
                     child: Text(
-                  'Reset Password',
-                  style: TextStyle(fontSize: 28, fontWeight: FontWeight.w700),
+                  S.of(context).ResetPassword,
+                  style: const TextStyle(
+                      fontSize: 28, fontWeight: FontWeight.w700),
                 )),
                 SizedBox(
                   height: media.height * 0.02,
@@ -40,12 +42,12 @@ class RestPsswordScreen extends StatelessWidget {
                       start: media.width * 0.15,
                       end: media.width * 0.15,
                     ),
-                    child: const Text(
-                      'Create strong and secured'
-                      ' new password',
+                    child: Text(
+                      S.of(context).Createstrongandsecured +
+                          S.of(context).newpassword,
                       textAlign: TextAlign.center,
-                      style:
-                          TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
+                      style: const TextStyle(
+                          fontSize: 14, fontWeight: FontWeight.w500),
                     ),
                   ),
                 ),
@@ -60,14 +62,14 @@ class RestPsswordScreen extends StatelessWidget {
                   child: DefaultTextForm(
                     validator: (p2) {
                       if (p2!.isEmpty) {
-                        return "enter value";
+                        return S.of(context).entervalue;
                       }
                       return null;
                     },
                     Controller: passwordController,
-                    text: 'Password',
+                    text: S.of(context).Password,
                     keyboardType: TextInputType.visiblePassword,
-                    hinttext: 'Enter your password',
+                    hinttext: S.of(context).Enteryourpassword,
                     obscure: true,
                     suffix: const Icon(Icons.remove_red_eye_outlined),
                   ),
@@ -83,14 +85,14 @@ class RestPsswordScreen extends StatelessWidget {
                   child: DefaultTextForm(
                     validator: (p1) {
                       if (p1!.isEmpty) {
-                        return "enter value";
+                        return S.of(context).entervalue;
                       }
                       return null;
                     },
                     Controller: confirmPasswordController,
-                    text: 'Confirm Password',
+                    text: S.of(context).ConfirmPassword,
                     keyboardType: TextInputType.visiblePassword,
-                    hinttext: 'Confirm your password',
+                    hinttext: S.of(context).Confirmyourpassword,
                     obscure: true,
                     suffix: const Icon(Icons.remove_red_eye_outlined),
                   ),
@@ -101,9 +103,9 @@ class RestPsswordScreen extends StatelessWidget {
                 DefaultButton(
                   height: media.height * 0.07,
                   width: media.width * .90,
-                  text: const Text(
-                    'Save Password',
-                    style: TextStyle(
+                  text: Text(
+                    S.of(context).SavePassword,
+                    style: const TextStyle(
                         color: Colors.white,
                         fontSize: 18,
                         fontWeight: FontWeight.w700),

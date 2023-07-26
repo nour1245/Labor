@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:laboar/blocs/authcubit/auth_cubit.dart';
 import 'package:laboar/blocs/authcubit/auth_state.dart';
+import 'package:laboar/generated/l10n.dart';
 import 'package:laboar/view/screens/auth_screens/login.dart';
 import 'package:laboar/view/widgets/text_button.dart';
 import 'package:laboar/view/widgets/textformfield.dart';
@@ -40,12 +41,12 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
           const CircularProgressIndicator.adaptive();
         }
         if (state is SaveNewDataSuccesState) {
-          context.showToastySnackbar(
-              "Success", "New Data Saved!", AlertType.success);
+          context.showToastySnackbar(S.of(context).Success,
+              S.of(context).NewDataSaved, AlertType.success);
         }
         if (state is SaveNewDataErrorState) {
-          context.showToastySnackbar(
-              "Error!", "Try agine later", AlertType.error);
+          context.showToastySnackbar(S.of(context).Error,
+              S.of(context).Tryaginelater, AlertType.error);
         }
       },
       builder: (context, state) {
@@ -98,12 +99,12 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                       DefaultTextForm(
                         validator: (p1) {
                           if (p1!.isEmpty) {
-                            return "enter value";
+                            return S.of(context).entervalue;
                           }
                           return null;
                         },
                         Controller: NameController,
-                        text: 'Full Name',
+                        text: S.of(context).FullName,
                         keyboardType: TextInputType.name,
                         hinttext: NameController.text,
                         obscure: false,
@@ -112,12 +113,12 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                       DefaultTextForm(
                         validator: (p2) {
                           if (p2!.isEmpty) {
-                            return "enter value";
+                            return S.of(context).entervalue;
                           }
                           return null;
                         },
                         Controller: phoneController,
-                        text: 'Phone',
+                        text: S.of(context).Phone,
                         keyboardType: TextInputType.name,
                         hinttext: phoneController.text,
                         obscure: false,
@@ -126,12 +127,12 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                       DefaultTextForm(
                         validator: (p3) {
                           if (p3!.isEmpty) {
-                            return "enter value";
+                            return S.of(context).entervalue;
                           }
                           return null;
                         },
                         Controller: passwordController,
-                        text: 'Password',
+                        text: S.of(context).Password,
                         keyboardType: TextInputType.name,
                         hinttext: passwordController.text,
                         obscure: true,
@@ -143,9 +144,9 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                       DefaultButton(
                         height: media.height * 0.08,
                         width: media.width * 0.90,
-                        text: const Text(
-                          'Save Changes',
-                          style: TextStyle(
+                        text: Text(
+                          S.of(context).SaveChanges,
+                          style: const TextStyle(
                               color: Colors.white,
                               fontWeight: FontWeight.w700,
                               fontSize: 18),
@@ -182,9 +183,9 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                           });
                         },
                         icon: const Icon(Icons.delete_outline),
-                        label: const Text(
-                          'Delete account',
-                          style: TextStyle(
+                        label: Text(
+                          S.of(context).Deleteaccount,
+                          style: const TextStyle(
                               color: Colors.black,
                               fontWeight: FontWeight.w500,
                               fontSize: 16),

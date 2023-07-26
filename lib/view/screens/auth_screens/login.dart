@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:laboar/blocs/authcubit/auth_cubit.dart';
 import 'package:laboar/blocs/authcubit/auth_state.dart';
+import 'package:laboar/generated/l10n.dart';
 import 'package:laboar/view/widgets/text_button.dart';
 import 'package:laboar/view/widgets/textformfield.dart';
 import 'package:laboar/view/screens/auth_screens/forget_pass.dart';
@@ -23,8 +24,8 @@ class LoginScreen extends StatelessWidget {
       child: BlocConsumer<AuthCubit, AuthStates>(
         listener: (context, state) {
           if (state is LoginErrorState) {
-            context.showToastySnackbar(
-                'Error', 'Password Or phone Number is wrong', AlertType.error);
+            context.showToastySnackbar(S.of(context).Error,
+                S.of(context).PasswordOrphoneNumberiswrong, AlertType.error);
           }
         },
         builder: (context, state) {
@@ -38,10 +39,10 @@ class LoginScreen extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      const Center(
+                      Center(
                           child: Text(
-                        'Login',
-                        style: TextStyle(
+                        S.of(context).Login,
+                        style: const TextStyle(
                             fontSize: 28, fontWeight: FontWeight.w700),
                       )),
                       SizedBox(
@@ -53,11 +54,11 @@ class LoginScreen extends StatelessWidget {
                             start: media.width * 0.15,
                             end: media.width * 0.15,
                           ),
-                          child: const Text(
-                            'Please Enter your Phone and password'
-                            ' to continue',
+                          child: Text(
+                            S.of(context).PleaseEnteryourPhoneandpassword +
+                                S.of(context).tocontinue,
                             textAlign: TextAlign.center,
-                            style: TextStyle(
+                            style: const TextStyle(
                                 fontSize: 14, fontWeight: FontWeight.w500),
                           ),
                         ),
@@ -73,14 +74,14 @@ class LoginScreen extends StatelessWidget {
                         child: DefaultTextForm(
                           validator: (p0) {
                             if (p0!.isEmpty) {
-                              return "please enter your Phone";
+                              return S.of(context).pleaseenteryourPhone;
                             }
                             return null;
                           },
                           Controller: phoneController,
-                          text: 'Phone',
+                          text: S.of(context).Phone,
                           keyboardType: TextInputType.phone,
-                          hinttext: 'phone number',
+                          hinttext: S.of(context).phonenumber,
                           obscure: false,
                           suffix: const Icon(Icons.phone),
                         ),
@@ -96,14 +97,14 @@ class LoginScreen extends StatelessWidget {
                         child: DefaultTextForm(
                           validator: (p1) {
                             if (p1!.isEmpty) {
-                              return "enter Your Password";
+                              return S.of(context).Enteryourpassword;
                             }
                             return null;
                           },
                           Controller: passwordController,
-                          text: 'Password',
+                          text: S.of(context).Password,
                           keyboardType: TextInputType.visiblePassword,
-                          hinttext: 'Enter your password',
+                          hinttext: S.of(context).Enteryourpassword,
                           obscure: true,
                           suffix: const Icon(Icons.remove_red_eye_outlined),
                         ),
@@ -122,9 +123,9 @@ class LoginScreen extends StatelessWidget {
                                   builder: (context) => ForgetPasswordScreen(),
                                 ));
                           },
-                          child: const Text(
-                            'Forget Password ?',
-                            style: TextStyle(
+                          child: Text(
+                            S.of(context).ForgetPassword,
+                            style: const TextStyle(
                                 fontSize: 16, fontWeight: FontWeight.w500),
                           ),
                         ),
@@ -135,9 +136,9 @@ class LoginScreen extends StatelessWidget {
                       DefaultButton(
                         height: media.height * 0.07,
                         width: media.width * .90,
-                        text: const Text(
-                          'Login',
-                          style: TextStyle(
+                        text: Text(
+                          S.of(context).Login,
+                          style: const TextStyle(
                               color: Colors.white,
                               fontSize: 18,
                               fontWeight: FontWeight.w700),
@@ -152,7 +153,7 @@ class LoginScreen extends StatelessWidget {
                       SizedBox(
                         height: media.height * 0.03,
                       ),
-                      const Text("OR"),
+                      Text(S.of(context).OR),
                       SizedBox(
                         height: media.height * 0.03,
                       ),
@@ -167,16 +168,16 @@ class LoginScreen extends StatelessWidget {
                           ),
                           width: media.width * 0.90,
                           height: media.height * 0.08,
-                          child: const Row(
+                          child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Image(
+                              const Image(
                                   image: AssetImage(
                                       'assets/images/face_icon.png')),
-                              SizedBox(
+                              const SizedBox(
                                 width: 8,
                               ),
-                              Text('Facebook'),
+                              Text(S.of(context).Facebook),
                             ],
                           ),
                         ),
@@ -196,16 +197,16 @@ class LoginScreen extends StatelessWidget {
                           ),
                           width: media.width * 0.90,
                           height: media.height * 0.08,
-                          child: const Row(
+                          child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Image(
+                              const Image(
                                   image: AssetImage(
                                       'assets/images/google_icon.png')),
-                              SizedBox(
+                              const SizedBox(
                                 width: 8,
                               ),
-                              Text('Google'),
+                              Text(S.of(context).Google),
                             ],
                           ),
                         ),
@@ -216,9 +217,9 @@ class LoginScreen extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          const Text(
-                            'Don’t Have Account ? ',
-                            style: TextStyle(
+                          Text(
+                            S.of(context).DontHaveAccount,
+                            style: const TextStyle(
                                 fontSize: 16, fontWeight: FontWeight.w500),
                           ),
                           InkWell(
@@ -229,9 +230,9 @@ class LoginScreen extends StatelessWidget {
                                     builder: (context) => RegisterScreen(),
                                   ));
                             },
-                            child: const Text(
-                              'Sign Up',
-                              style: TextStyle(
+                            child: Text(
+                              S.of(context).SignUp,
+                              style: const TextStyle(
                                   fontSize: 16, fontWeight: FontWeight.w700),
                             ),
                           ),

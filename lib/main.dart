@@ -19,7 +19,7 @@ Box? mybox;
 Box? userbox;
 Box? ordersBox;
 Box? address;
-
+Box? localebox;
 openHiveBox(String boxname) async {
   if (!Hive.isBoxOpen(boxname)) {
     Hive.init((await getApplicationDocumentsDirectory()).path);
@@ -33,6 +33,7 @@ void main() async {
   userbox = await openHiveBox('Userbox');
   ordersBox = await openHiveBox('orders');
   address = await openHiveBox('address');
+  localebox = await openHiveBox('locale');
   await CacheHelper.init();
 
   Bloc.observer = MyBlocObserver();
@@ -50,9 +51,27 @@ void main() async {
 }
 
 var onBord;
+var locale;
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  @override
+  void initState() {
+    print(localebox!.getAt(localebox!.length - 1));
+    setState(() {
+      if (localebox!.isNotEmpty) {
+        locale = Locale(localebox!.getAt(localebox!.length - 1));
+      }
+    });
+
+    super.initState();
+  }
 
   // This widget is the root of your application.
   @override
@@ -68,7 +87,7 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
         theme: ThemeData(textTheme: GoogleFonts.quicksandTextTheme()),
-        locale: const Locale('en'),
+        locale: locale,
         localizationsDelegates: const [
           S.delegate,
           GlobalMaterialLocalizations.delegate,

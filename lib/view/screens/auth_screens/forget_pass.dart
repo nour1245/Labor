@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:laboar/blocs/authcubit/auth_cubit.dart';
 import 'package:laboar/blocs/authcubit/auth_state.dart';
+import 'package:laboar/generated/l10n.dart';
 import 'package:laboar/view/widgets/text_button.dart';
 import 'package:laboar/view/widgets/textformfield.dart';
 
@@ -35,10 +36,10 @@ class ForgetPasswordScreen extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      const Center(
+                      Center(
                           child: Text(
-                        'Forget Password',
-                        style: TextStyle(
+                        S.of(context).ForgetPassword,
+                        style: const TextStyle(
                             fontSize: 28, fontWeight: FontWeight.w700),
                       )),
                       SizedBox(
@@ -50,11 +51,11 @@ class ForgetPasswordScreen extends StatelessWidget {
                             start: media.width * 0.15,
                             end: media.width * 0.15,
                           ),
-                          child: const Text(
-                            'Please Enter your Phone '
-                            ' to reset password',
+                          child: Text(
+                            S.of(context).PleaseEnteryourPhone +
+                                S.of(context).toresetpassword,
                             textAlign: TextAlign.center,
-                            style: TextStyle(
+                            style: const TextStyle(
                                 fontSize: 14, fontWeight: FontWeight.w500),
                           ),
                         ),
@@ -70,14 +71,14 @@ class ForgetPasswordScreen extends StatelessWidget {
                         child: DefaultTextForm(
                           validator: (value) {
                             if (value!.isEmpty) {
-                              return "please enter a value";
+                              return S.of(context).pleaseenteravalue;
                             }
                             return null;
                           },
                           Controller: phoneController,
-                          text: 'Phone',
+                          text: S.of(context).Phone,
                           keyboardType: TextInputType.phone,
-                          hinttext: 'phone number',
+                          hinttext: S.of(context).phonenumber,
                           obscure: false,
                           suffix: const Icon(Icons.phone),
                         ),
@@ -88,9 +89,9 @@ class ForgetPasswordScreen extends StatelessWidget {
                       DefaultButton(
                         height: media.height * 0.07,
                         width: media.width * .90,
-                        text: const Text(
-                          'Reset Password',
-                          style: TextStyle(
+                        text: Text(
+                          S.of(context).ResetPassword,
+                          style: const TextStyle(
                               color: Colors.white,
                               fontSize: 18,
                               fontWeight: FontWeight.w700),

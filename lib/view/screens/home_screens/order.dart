@@ -6,6 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:laboar/blocs/appcubit/app_cubit.dart';
 import 'package:laboar/blocs/appcubit/app_state.dart';
+import 'package:laboar/generated/l10n.dart';
 import 'package:laboar/main.dart';
 import 'package:laboar/view/screens/home_screens/layout.dart';
 import 'package:laboar/view/styles/colors.dart';
@@ -64,16 +65,16 @@ class _OrederScreenState extends State<OrederScreen> {
   String? hoursSelectedValue;
 
   final List<String> nationalityitems = [
-    "Philippines",
-    "indian",
-    "pakistani",
+    S.current.Philippines,
+    S.current.indian,
+    S.current.pakistani,
   ];
   String? nationalitySelectedValue;
 
   final List<String> cityitems = [
-    "riyadh",
-    "jadah",
-    "dmamm",
+    S.current.riyadh,
+    S.current.jadah,
+    S.current.dmamm,
   ];
   String? citySelectedValue;
 
@@ -148,10 +149,11 @@ class _OrederScreenState extends State<OrederScreen> {
                                 );
                                 showOkAlertDialog(
                                   context: context,
-                                  message:
-                                      'A confirmation message will be sent when your offer is accepted by the company',
-                                  title: 'Your request is under review',
-                                  okLabel: 'OK',
+                                  message: S
+                                      .of(context)
+                                      .Aconfirmationmessagewillbesentwhenyourofferisacceptedbythecompany,
+                                  title: S.of(context).Yourrequestisunderreview,
+                                  okLabel: S.of(context).OK,
                                   style: AdaptiveStyle.material,
                                 );
                               }
@@ -194,13 +196,14 @@ class _OrederScreenState extends State<OrederScreen> {
         Step(
           isActive: currentStep >= 0,
           state: currentStep <= 0 ? StepState.editing : StepState.complete,
-          title: const Text('Step 1'),
+          title: Text(S.of(context).Step1),
           content: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text(
-                "Period",
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
+              Text(
+                S.of(context).Period,
+                style:
+                    const TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
               ),
               SizedBox(
                 height: media.height * .01,
@@ -216,7 +219,7 @@ class _OrederScreenState extends State<OrederScreen> {
                     child: DSelectButton(
                       atDayClicked: atDayClicked,
                       icon: Icons.wb_sunny_sharp,
-                      text: 'Morning',
+                      text: S.of(context).Morning,
                     ),
                   ),
                   SizedBox(
@@ -231,7 +234,7 @@ class _OrederScreenState extends State<OrederScreen> {
                     child: DSelectButton(
                       atDayClicked: !atDayClicked,
                       icon: Icons.nights_stay_sharp,
-                      text: "Night",
+                      text: S.of(context).Night,
                     ),
                   ),
                 ],
@@ -242,17 +245,17 @@ class _OrederScreenState extends State<OrederScreen> {
               Dropdown(
                 items: hoursitems,
                 selectedValue: hoursSelectedValue,
-                title: 'Number Of hours',
+                title: S.of(context).NumberOfhours,
               ),
               Dropdown(
                 items: nationalityitems,
                 selectedValue: nationalitySelectedValue,
-                title: 'Nationality',
+                title: S.of(context).Nationality,
               ),
               Dropdown(
                 items: cityitems,
                 selectedValue: citySelectedValue,
-                title: 'City',
+                title: S.of(context).City,
               ),
             ],
           ),
@@ -260,10 +263,10 @@ class _OrederScreenState extends State<OrederScreen> {
         Step(
           isActive: currentStep >= 1,
           state: currentStep <= 1 ? StepState.editing : StepState.complete,
-          title: const Text("Step 2"),
+          title: Text(S.of(context).Step2),
           content: Column(
             children: [
-              const Text("Filter"),
+              Text(S.of(context).Filter),
               InkWell(
                 onTap: () {
                   setState(() {
@@ -303,9 +306,9 @@ class _OrederScreenState extends State<OrederScreen> {
                                     fontWeight: FontWeight.w700, fontSize: 16),
                               ),
                               const Spacer(),
-                              const Text(
-                                "price ",
-                                style: TextStyle(
+                              Text(
+                                S.of(context).price,
+                                style: const TextStyle(
                                     fontWeight: FontWeight.w500, fontSize: 14),
                               ),
                             ],
@@ -315,7 +318,7 @@ class _OrederScreenState extends State<OrederScreen> {
                                 start: media.width * .09),
                             child: Row(
                               children: [
-                                StarRate(rate: 'rate'),
+                                StarRate(rate: S.of(context).rate),
                                 const Spacer(),
                                 const Text(
                                   "1500",
@@ -337,11 +340,11 @@ class _OrederScreenState extends State<OrederScreen> {
                           ),
                           Row(
                             children: [
-                              const FittedBox(
+                              FittedBox(
                                 child: Row(
                                   children: [
-                                    Icon(Icons.flag_circle_outlined),
-                                    Text("Philippines"),
+                                    const Icon(Icons.flag_circle_outlined),
+                                    Text(S.of(context).Philippines),
                                   ],
                                 ),
                               ),
@@ -379,7 +382,7 @@ class _OrederScreenState extends State<OrederScreen> {
         Step(
           isActive: currentStep >= 2,
           state: currentStep <= 2 ? StepState.editing : StepState.complete,
-          title: const Text("Step 3"),
+          title: Text(S.of(context).Step3),
           content: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -401,16 +404,16 @@ class _OrederScreenState extends State<OrederScreen> {
                     SizedBox(
                       width: media.width * 0.01,
                     ),
-                    const Expanded(
+                    Expanded(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'your location',
+                            S.of(context).yourlocation,
                             textAlign: TextAlign.start,
-                            style: TextStyle(color: lightGrayColor),
+                            style: const TextStyle(color: lightGrayColor),
                           ),
-                          Text(
+                          const Text(
                             'Jiddah Alexander Language School , ALS',
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
@@ -429,11 +432,12 @@ class _OrederScreenState extends State<OrederScreen> {
               Dropdown(
                 items: vistesItems,
                 selectedValue: visitsSelectedValue,
-                title: "Number of Vistes",
+                title: S.of(context).NumberofVistes,
               ),
-              const Text(
-                'Choose Date & Time',
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
+              Text(
+                S.of(context).ChooseDateTime,
+                style:
+                    const TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
               ),
               DatePicker(
                 onDateChange: (selectedDate) {
@@ -446,7 +450,7 @@ class _OrederScreenState extends State<OrederScreen> {
                 selectionColor: greenColor,
                 selectedTextColor: Colors.white,
               ),
-              const Text('Choose  Time'),
+              Text(S.of(context).ChooseTime),
               SizedBox(
                 height: media.height * 0.10,
                 width: media.width,

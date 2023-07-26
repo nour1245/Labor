@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:laboar/generated/l10n.dart';
 import 'package:laboar/main.dart';
 import 'package:laboar/view/widgets/activebutton.dart';
 import 'package:laboar/view/widgets/history_card.dart';
@@ -23,9 +24,10 @@ class _HistoryScreenState extends State<HistoryScreen> {
         child: Center(
           child: Column(
             children: [
-              const Text(
-                'History',
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
+              Text(
+                S.of(context).History,
+                style:
+                    const TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
               ),
               SizedBox(
                 height: media.height * 0.03,
@@ -43,8 +45,10 @@ class _HistoryScreenState extends State<HistoryScreen> {
                         });
                       },
                       child: isOnePressed
-                          ? ActiveMenuButton(text: 'Ongoing', media: media)
-                          : NotActiveMenuButton(text: 'Ongoing', media: media),
+                          ? ActiveMenuButton(
+                              text: S.of(context).Ongoing, media: media)
+                          : NotActiveMenuButton(
+                              text: S.of(context).Ongoing, media: media),
                     ),
                     const Spacer(),
                     //past part
@@ -55,8 +59,10 @@ class _HistoryScreenState extends State<HistoryScreen> {
                         });
                       },
                       child: isOnePressed
-                          ? NotActiveMenuButton(text: "Past", media: media)
-                          : ActiveMenuButton(text: "Past", media: media),
+                          ? NotActiveMenuButton(
+                              text: S.of(context).Past, media: media)
+                          : ActiveMenuButton(
+                              text: S.of(context).Past, media: media),
                     ),
                   ],
                 ),
@@ -90,7 +96,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
                       worker: ordersBox!.getAt(0)['nat'] ?? 'indian',
                       type: 'Canceld',
                       media: media,
-                      jobName: "Car Wash ",
+                      jobName: S.of(context).CarWash,
                       jobId: '25ds45g53dha'),
             ],
           ),

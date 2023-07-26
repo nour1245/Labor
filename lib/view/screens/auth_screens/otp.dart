@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:laboar/blocs/authcubit/auth_cubit.dart';
 import 'package:laboar/blocs/authcubit/auth_state.dart';
+import 'package:laboar/generated/l10n.dart';
 import 'package:laboar/view/screens/home_screens/homepage.dart';
 import 'package:laboar/view/widgets/text_button.dart';
 import 'package:laboar/view/styles/colors.dart';
@@ -71,16 +72,16 @@ class _OtpScreenState extends State<OtpScreen> {
                       SizedBox(
                         height: media.height * 0.03,
                       ),
-                      const Column(
+                      Column(
                         children: [
                           Text(
-                            'An Authentecation code has been sent to',
+                            S.of(context).AnAuthentecationcodehasbeensentto,
                             textAlign: TextAlign.center,
-                            style: TextStyle(
+                            style: const TextStyle(
                                 fontWeight: FontWeight.w500, fontSize: 14),
                           ),
-                          Text(
-                            ' (+02) 01003625286  ',
+                          const Text(
+                            '',
                             textAlign: TextAlign.center,
                             style: TextStyle(
                                 fontWeight: FontWeight.w500,
@@ -117,9 +118,9 @@ class _OtpScreenState extends State<OtpScreen> {
                       DefaultButton(
                         height: media.height * 0.07,
                         width: media.width * 0.90,
-                        text: const Text(
-                          'Submit',
-                          style: TextStyle(
+                        text: Text(
+                          S.of(context).Submit,
+                          style: const TextStyle(
                               color: Colors.white,
                               fontSize: 18,
                               fontWeight: FontWeight.w700),
@@ -132,17 +133,17 @@ class _OtpScreenState extends State<OtpScreen> {
                       SizedBox(
                         height: media.height * 0.04,
                       ),
-                      const Row(
+                      Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            'Code Sent. Resend Code in ',
-                            style: TextStyle(
+                            S.of(context).CodeSentResendCodein,
+                            style: const TextStyle(
                                 color: Colors.grey,
                                 fontSize: 14,
                                 fontWeight: FontWeight.w500),
                           ),
-                          Text(
+                          const Text(
                             ' 00:50',
                             style: TextStyle(
                                 color: yallowColor,

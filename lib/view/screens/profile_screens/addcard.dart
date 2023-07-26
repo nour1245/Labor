@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:laboar/generated/l10n.dart';
 import 'package:laboar/main.dart';
 
 import 'package:laboar/view/widgets/text_button.dart';
@@ -43,12 +44,12 @@ class AddCard extends StatelessWidget {
                     DefaultTextForm(
                         validator: (p2) {
                           if (p2!.isEmpty) {
-                            return "enter value";
+                            return S.of(context).entervalue;
                           }
                           return null;
                         },
                         Controller: nameController,
-                        text: "Card Name",
+                        text: S.of(context).CardName,
                         keyboardType: TextInputType.name,
                         hinttext: '',
                         obscure: false,
@@ -59,9 +60,9 @@ class AddCard extends StatelessWidget {
                     Padding(
                       padding: EdgeInsetsDirectional.only(
                           bottom: media.height * 0.01),
-                      child: const Text(
-                        'Card Type',
-                        style: TextStyle(
+                      child: Text(
+                        S.of(context).CardType,
+                        style: const TextStyle(
                             fontSize: 16, fontWeight: FontWeight.w600),
                       ),
                     ),
@@ -76,7 +77,7 @@ class AddCard extends StatelessWidget {
                           inputDecorationTheme: const InputDecorationTheme(
                             border: InputBorder.none,
                           ),
-                          label: const Text('Card Type'),
+                          label: Text(S.of(context).CardType),
                           width: media.width * 0.70,
                           controller: typeController,
                           dropdownMenuEntries: const [
@@ -88,12 +89,12 @@ class AddCard extends StatelessWidget {
                     DefaultTextForm(
                         validator: (p3) {
                           if (p3!.isEmpty) {
-                            return "enter value";
+                            return S.of(context).entervalue;
                           }
                           return null;
                         },
                         Controller: numberController,
-                        text: "Card Number",
+                        text: S.of(context).cardNumber,
                         keyboardType: TextInputType.name,
                         hinttext: '',
                         obscure: false,
@@ -101,12 +102,12 @@ class AddCard extends StatelessWidget {
                     DefaultTextForm(
                         validator: (p4) {
                           if (p4!.isEmpty) {
-                            return "enter value";
+                            return S.of(context).entervalue;
                           }
                           return null;
                         },
                         Controller: expDateController,
-                        text: "Exp date",
+                        text: S.of(context).Expdate,
                         keyboardType: TextInputType.name,
                         hinttext: '',
                         obscure: false,
@@ -114,7 +115,7 @@ class AddCard extends StatelessWidget {
                     DefaultTextForm(
                         validator: (p5) {
                           if (p5!.isEmpty) {
-                            return "enter value";
+                            return S.of(context).entervalue;
                           }
                           return null;
                         },
@@ -133,7 +134,7 @@ class AddCard extends StatelessWidget {
                       child: DefaultButton(
                         height: media.height * .06,
                         width: media.width * 0.90,
-                        text: const Text('Save'),
+                        text: Text(S.of(context).Save),
                         funq: () async {
                           await saveCardDetails(context);
                         },
